@@ -16,6 +16,8 @@ const firebaseConfig = {
   appId: "1:1005619863255:web:7ae1bcb4ad6ec34fde9a92",
   measurementId: "G-GSE5HZ2T8F"
 };
+//do we need to hide the apiKey in a .env file or something
+
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
