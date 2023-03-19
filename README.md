@@ -8,13 +8,9 @@ SC2006 Software Engineering Lab Project
 ```terminal
 .
 ├── assets              # images, fonts, icons
-├── components          # reusable react components
-├── constants           # themes
 ├── firebase            # backend
 ├── screens             # user interface
 ├── services            # api requests
-├── utils               # helper functions
-├── LICENSE
 └── README.md
 ```
 
