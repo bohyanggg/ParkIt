@@ -7,7 +7,7 @@ import {
 	sendPasswordResetEmail,
 	signOut,
 } from "firebase/auth";
-import { auth } from "../firebase-config";
+import { auth } from "../firebaseconfig";
 
 export const createUser = async (email, password) => {
 	try {
