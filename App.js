@@ -7,7 +7,8 @@ import { NavigationContainer, DefaultTheme } from "@react-navigation/native";
 //screens
 import {
   LoginScreen,
-  Map
+  Map,
+  MyComponent
 } from "./screens";
 
 const Stack = createStackNavigator();
@@ -16,7 +17,7 @@ function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName="Map"
+        initialRouteName="Map1"
         screenOptions={{
           headerTitleAlign: 'center',
           headerStyle: {
@@ -42,6 +43,14 @@ function App() {
           component={Map}
           options={{
             headerShown: false,
+          }}
+        />
+
+        <Stack.Screen
+          name="Map1"
+          component={MyComponent}
+          options={{
+            headershown: false,
           }}
         />
       </Stack.Navigator>
