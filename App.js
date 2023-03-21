@@ -1,9 +1,14 @@
 
 import React from 'react';
-import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
-import Login from './screens/LoginScreen';
-import Map from './screens/Map';
+import { createStackNavigator } from "@react-navigation/stack";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { NavigationContainer, DefaultTheme } from "@react-navigation/native";
+
+//screens
+import {
+  LoginScreen,
+  Map
+} from "./screens";
 
 const Stack = createStackNavigator();
 
@@ -11,7 +16,7 @@ function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName="Login"
+        initialRouteName="Map"
         screenOptions={{
           headerTitleAlign: 'center',
           headerStyle: {
@@ -26,7 +31,7 @@ function App() {
       >
         <Stack.Screen
           name="Login"
-          component={Login}
+          component={LoginScreen}
           options={{
             headerShown: false,
           }}

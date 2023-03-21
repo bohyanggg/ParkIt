@@ -1,9 +1,8 @@
 import React from 'react';
 import { StatusBar } from 'expo-status-bar';
-import MapView from 'react-native-maps';
 import { StyleSheet, Text, View } from 'react-native';
 
-export default function Login() {
+const LoginScreen = ({navigation}) => {
   return (
     <View style={styles.container}>
       <Text>
@@ -11,7 +10,7 @@ export default function Login() {
       </Text>
     </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -21,3 +20,5 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 });
+
+export default LoginScreen;

@@ -8,14 +8,14 @@ import {
 
 import MapView from 'react-native-maps';
 
-export default function Map() {
-    return (
-        <View style={styles.body}>
-            <MapView
-                style={styles.map}
-            />
-        </View>
-    );
+const Map = () => {
+  return (
+    <View style={styles.body}>
+        <MapView
+            style={styles.map}
+        />
+    </View>
+);
 }
 
 const styles = StyleSheet.create({
@@ -32,3 +32,5 @@ const styles = StyleSheet.create({
         height: '100%',
     }
 });
+
+export default Map;
