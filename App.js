@@ -17,7 +17,7 @@ function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName="Map1"
+        initialRouteName="Login"
         screenOptions={{
           headerTitleAlign: 'center',
           headerStyle: {
