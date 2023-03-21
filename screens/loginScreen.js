@@ -9,12 +9,6 @@ const LoginScreen = ({navigation}) => {
         ParkIt
       </Text>
     </View>
-    <view>
-      <Button
-        title="Get Started"
-        onPress={() => navigation.navigate("Map")}
-      />
-    </view>
   );
 };
 
