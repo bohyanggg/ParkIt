@@ -1,5 +1,5 @@
 //import all the screens from the screens folder and export them
-import LoginScreen from "./loginScreen";
+import LoginScreen from "./LoginScreen";
 import Map from "./Map"
 import MyComponent from "./map1"
 
