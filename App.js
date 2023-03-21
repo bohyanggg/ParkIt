@@ -4,7 +4,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { NavigationContainer, DefaultTheme } from "@react-navigation/native";
 
-//screens
+//screens from index.js
 import {
   LoginScreen,
   Map,
