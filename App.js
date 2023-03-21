@@ -2,7 +2,7 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import Login from './screens/loginScreen';
+import Login from './screens/LoginScreen';
 import Map from './screens/Map';
 
 const Stack = createStackNavigator();

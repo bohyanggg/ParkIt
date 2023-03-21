@@ -5,6 +5,7 @@ import {
     Text,
 } from 'react-native';
 //import GlobalStyle from '../utils/GlobalStyle';
+
 import MapView from 'react-native-maps';
 
 export default function Map() {
