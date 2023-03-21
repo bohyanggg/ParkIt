@@ -1,14 +1,20 @@
 import React from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, Button } from 'react-native';
 
 const LoginScreen = ({navigation}) => {
   return (
     <View style={styles.container}>
       <Text>
-        This will be the Login Screen
+        ParkIt
       </Text>
     </View>
+    <view>
+      <Button
+        title="Get Started"
+        onPress={() => navigation.navigate("Map")}
+      />
+    </view>
   );
 };
 
