@@ -4,11 +4,40 @@ import axios from 'axios';
 
 function CPDetails() {
   const [data, setData] = useState([]);
+  const [token, setToken] = useState('');
+
+  useEffect(() => {
+    const accessKey = 'acb2ead0-8cef-46a5-af01-15d850b437ce';
+    const tokenUrl = 'https://www.ura.gov.sg/uraDataService/insertNewToken.action';
+
+    const getToken = async () => {
+      try {
+        const response = await axios.post(tokenUrl, null, {
+          headers: {
+            'AccessKey': accessKey
+          }
+        });
+        setToken(response.data.Result);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    // Call the API to get a new token every day at 12:00 am
+    const interval = setInterval(() => {
+      getToken();
+    }, 24 * 60 * 60 * 1000);
+
+    // Call the API to get the initial token
+    getToken();
+
+    // Clear the interval when the component unmounts
+    return () => clearInterval(interval);
+  }, []);
 
   useEffect(() => {
     const url = 'https://www.ura.gov.sg/uraDataService/invokeUraDS?service=Car_Park_Details';
     const accessKey = 'acb2ead0-8cef-46a5-af01-15d850b437ce';
-    const token = 'gPx2w4Xzvcx5xfqt5Gn8b13nH2sVafrfAh6kBaTf--KbCuvaDdfjCvdeuTyB3tCTm5hS21e7ku0z1@W78128e6-3f74eqFNku0xT';
 
     axios.get(url, {
       headers: {
@@ -23,11 +52,11 @@ function CPDetails() {
             t.ppCode === item.ppCode
           ))
         ));
-    })
+      })
       .catch(error => {
         console.log(error);
       });
-  }, []);
+  }, [token]);
 
   const renderItem = ({ item }) => (
     <View key={item.ppCode}>
