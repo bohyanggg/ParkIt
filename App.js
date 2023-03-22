@@ -8,7 +8,9 @@ import { NavigationContainer, DefaultTheme } from "@react-navigation/native";
 import {
   LoginScreen,
   Map,
-  MyComponent
+  MyComponent,
+  CarParkScreen,
+  CPDetails
 } from "./screens";
 
 const Stack = createStackNavigator();
@@ -17,7 +19,7 @@ function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName="Login"
+        initialRouteName="CarparkDetails"
         screenOptions={{
           headerTitleAlign: 'center',
           headerStyle: {
@@ -49,6 +51,22 @@ function App() {
         <Stack.Screen
           name="Map1"
           component={MyComponent}
+          options={{
+            headershown: false,
+          }}
+        />
+
+        <Stack.Screen
+          name="Carpark"
+          component={CarParkScreen}
+          options={{
+            headershown: false,
+          }}
+        />
+
+        <Stack.Screen
+          name="CarparkDetails"
+          component={CPDetails}
           options={{
             headershown: false,
           }}
