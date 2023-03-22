@@ -18,8 +18,12 @@ function CPDetails() {
     })
       .then(response => {
         const data = response.data.Result;
-        setData(data);
-      })
+        setData(data.filter((item, index, self) =>
+          index === self.findIndex((t) => (
+            t.ppCode === item.ppCode
+          ))
+        ));
+    })
       .catch(error => {
         console.log(error);
       });
