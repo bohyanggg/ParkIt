@@ -9,7 +9,8 @@ import {
   LoginScreen,
   Map,
   MyComponent,
-  CarParkScreen
+  CarParkScreen,
+  CPDetails
 } from "./screens";
 
 const Stack = createStackNavigator();
@@ -18,7 +19,7 @@ function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName="Carpark"
+        initialRouteName="CarparkDetails"
         screenOptions={{
           headerTitleAlign: 'center',
           headerStyle: {
@@ -58,6 +59,14 @@ function App() {
         <Stack.Screen
           name="Carpark"
           component={CarParkScreen}
+          options={{
+            headershown: false,
+          }}
+        />
+
+        <Stack.Screen
+          name="CarparkDetails"
+          component={CPDetails}
           options={{
             headershown: false,
           }}
