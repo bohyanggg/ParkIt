@@ -66,6 +66,12 @@ function CPDetails() {
       <Text>Saturday Rate: {item.satdayRate}</Text>
       <Text>Sunday/PH Rate: {item.sunPHRate}</Text>
       <Text>Parking System: {item.parkingSystem}</Text>
+      <Text>Coordinates:</Text>
+      {item.geometries.map((geo, index) => (
+        <Text key={`${item.carparkNo}-${item.lotType}-geo-${index}`}>
+          {geo.coordinates}
+        </Text>
+      ))}
     </View>
   );
 
