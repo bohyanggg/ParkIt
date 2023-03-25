@@ -36,6 +36,7 @@ function CarParkScreen() {
     return () => clearInterval(interval);
   }, []);
 
+  //Car Park Available Lots: this returns the list of URA carparks in JSON format
   useEffect(() => {
     const url = 'https://www.ura.gov.sg/uraDataService/invokeUraDS?service=Car_Park_Availability';
     const accessKey = 'acb2ead0-8cef-46a5-af01-15d850b437ce';

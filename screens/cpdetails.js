@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { View, Text, FlatList } from 'react-native';
 import axios from 'axios';
 
+//This data service will return the list of URA car park details and rates in the JSON format.//
 function CPDetails() {
   const [data, setData] = useState([]);
   const [token, setToken] = useState('');

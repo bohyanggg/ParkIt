@@ -1,9 +1,7 @@
 import React from 'react';
 //import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, Button, SafeAreaView, Alert, TextInput, Image, Pressable } from 'react-native';
+import { StyleSheet, Text, View, Button, SafeAreaView, Alert, TextInput, Image, Pressable, TouchableOpacity } from 'react-native';
 //import { useState } from 'react';
-
-
 
 const Separator = () => <View style={styles.separator} />;
 
@@ -26,8 +24,6 @@ function loginHandler(){  //login handler will take in username and password on 
   }
 }*/
 
-
-
 const LoginScreen = ({ navigation }) => (
   <SafeAreaView style={styles.container}>
     <View>
@@ -38,6 +34,7 @@ const LoginScreen = ({ navigation }) => (
         <View styles={styles.textInputStyling}>
           <TextInput placeholderTextColor='grey' placeholder='Input Username' />
         </View>
+        <Separator/>
         <View >
           <TextInput placeholderTextColor='grey' placeholder='Input Password' />
         </View>
@@ -51,27 +48,24 @@ const LoginScreen = ({ navigation }) => (
         <Button
           title="Login"
           color="#800080"
-          onPress={() => Alert.alert('Left button pressed')}
-        //to change onpress to lead to main page
+          onPress={() => {navigation.navigate("Map1"), Alert.alert('Login button pressed')}}
         />
       </View>
       <View style={styles.navigators}>
         <Button
           title="Sign Up"
           color="#800080"
-          onPress={() => Alert.alert('Right button pressed')}
-        //to change onpress to lead to sign up pages
+          //leave the Alert there, might want to use for other stuff in the future
+          onPress={() => {navigation.navigate("SignUp1"), Alert.alert('Sign Up button pressed')}}
         />
       </View>
       <Separator/>
       <View>
-        <Pressable>
+        <Pressable onPress={() => navigation.navigate("ForgetPassword")}>
           <Text style={styles.forgotPasswordStyle}>
             Forgot Password?
           </Text>
         </Pressable>
-        
-        
       </View>
     </View>
   </SafeAreaView>
@@ -100,14 +94,12 @@ const styles = StyleSheet.create({
     marginVertical: 8
   },
   image: {
-    width: 200,
-    height: 100,
     margin: 20,
     padding: 16,
   },
   textInputLayout: {
     flexDirection: 'row',
-    //flex:1,
+    flex:1,
     margin: 5,
     justifyContent: 'space-between',
     padding: 20,
