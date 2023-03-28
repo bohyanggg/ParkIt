@@ -1,64 +1,67 @@
 import React from 'react';
 //import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, Button, SafeAreaView, Alert, TextInput, Image, Pressable } from 'react-native';
+import { StyleSheet, Text, View, Button, SafeAreaView, Alert, TextInput, Image, Pressable, Keyboard, TouchableWithoutFeedback } from 'react-native';
 
 const Separator = () => <View style={styles.separator} />;
 
 
 const LoginScreen = ({ navigation }) => (
-  <SafeAreaView style={styles.container}>
-    <View>
-      <View style={{ paddingBottom:20}}>
-        <Image source={require('../assets/images/ParkItlogo.png')} style={styles.image} />
-      </View>
- 
+  <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
+    <SafeAreaView style={styles.container}>
       <View>
-        <View styles={styles.textInputStyling}>
-          <TextInput placeholderTextColor='grey' placeholder='Username' />
+        <View style={{ paddingBottom:20}}>
+          <Image source={require('../assets/images/ParkItlogo.png')} style={styles.image} />
         </View>
-        <Separator />
-        <View style={{ paddingTop:20}} >
-          <TextInput placeholderTextColor='grey' placeholder='Password' />
+  
+        <View>
+          <View styles={styles.textInputStyling}>
+            <TextInput placeholderTextColor='grey' placeholder='Username' />
+          </View>
+          <Separator />
+          <View style={{ paddingTop:20}} >
+            <TextInput placeholderTextColor='grey' placeholder='Password' />
+          </View>
+          <Separator />
         </View>
-        <Separator />
       </View>
-    </View>
+      
 
-    <View style={styles.forgotPasswordViewStyle}>
-      <Pressable onPress={() => navigation.navigate("ForgetPassword")}>
-        <Text style={styles.forgotPasswordStyle}>
-          Forgot Password?
-        </Text>
-      </Pressable>
-    </View>
-
-    <View style={styles.buttons}>
-      <View style={styles.navigators}>
-        <Button
-          title="Login"
-          color="#5D0EEA"
-           
-          onPress={() => { navigation.navigate("Map1"), Alert.alert('Login button pressed') }}
-          
-        />
-      </View>
-
-
-
-
-    </View>
-    <View style={styles.navigators}>
-        <Pressable
-          color="#5D0EEA"
-          //leave the Alert there, might want to use for other stuff in the future
-          onPress={() => { navigation.navigate("SignUp1"), Alert.alert('Sign Up button pressed') }}
-        >
-           <Text style={styles.forgotPasswordStyle}>
-          Or Sign Up
-        </Text>
+      <View style={styles.forgotPasswordViewStyle}>
+        <Pressable onPress={() => navigation.navigate("ForgetPassword")}>
+          <Text style={styles.forgotPasswordStyle}>
+            Forgot Password?
+          </Text>
         </Pressable>
       </View>
-  </SafeAreaView>
+
+      <View style={styles.buttons}>
+        <View style={styles.navigators}>
+          <Button
+            title="Login"
+            color="#5D0EEA"
+            
+            onPress={() => { navigation.navigate("Map1"), Alert.alert('Login button pressed') }}
+            
+          />
+        </View>
+
+
+
+
+      </View>
+      <View style={styles.navigators}>
+          <Pressable
+            color="#5D0EEA"
+            //leave the Alert there, might want to use for other stuff in the future
+            onPress={() => { navigation.navigate("SignUp1"), Alert.alert('Sign Up button pressed') }}
+          >
+            <Text style={styles.forgotPasswordStyle}>
+            Or Sign Up
+          </Text>
+          </Pressable>
+        </View>
+    </SafeAreaView>
+  </TouchableWithoutFeedback>
 );
 
 const styles = StyleSheet.create({
