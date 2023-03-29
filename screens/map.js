@@ -1,36 +1,57 @@
-import React from 'react';
-import {
-    View,
-    StyleSheet,
-    Text,
-} from 'react-native';
-//import GlobalStyle from '../utils/GlobalStyle';
+import React, { useState, useEffect } from 'react';
+import { StyleSheet, Text, View, Button } from 'react-native';
+import MapView, { Marker } from 'react-native-maps';
+import * as Location from 'expo-location';
 
-import MapView from 'react-native-maps';
+export default function Map({navigation}) {
+  const [currentLocation, setCurrentLocation] = useState(null);
 
-const Map = () => {
+  useEffect(() => {
+    (async () => {
+      let { status } = await Location.requestForegroundPermissionsAsync();
+      if (status !== 'granted') {
+        alert('Permission to access location was denied');
+        return;
+      }
+
+      let location = await Location.getCurrentPositionAsync({});
+      setCurrentLocation(location);
+    })();
+  }, []);
+
   return (
-    <View style={styles.body}>
+    <View style={styles.container}>
+      {currentLocation && (
         <MapView
-            style={styles.map}
+          style={styles.map}
+          initialRegion={{
+            latitude: currentLocation.coords.latitude,
+            longitude: currentLocation.coords.longitude,
+            latitudeDelta: 0.0922,
+            longitudeDelta: 0.0421,
+          }}
+        >
+          <Marker coordinate={currentLocation.coords} />
+        </MapView>
+      )}
+      <View>
+        <Button
+          title="Back"
+          color='blue'
+          onPress={() => navigation.navigate("Login")}
         />
+      </View>
     </View>
-);
+
+  );
 }
 
 const styles = StyleSheet.create({
-    body: {
-        flex: 1,
-        alignItems: 'center',
-    },
-    text: {
-        fontSize: 40,
-        margin: 10,
-    },
-    map: {
-        width: '100%',
-        height: '100%',
-    }
+  container: {
+    flex: 1,
+  },
+  map: {
+    flex: 1,
+  },
 });
 
-export default Map;

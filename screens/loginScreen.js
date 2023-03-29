@@ -4,7 +4,6 @@ import { StyleSheet, Text, View, Button, SafeAreaView, Alert, TextInput, Image, 
 
 const Separator = () => <View style={styles.separator} />;
 
-
 const LoginScreen = ({ navigation }) => (
   <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
     <SafeAreaView style={styles.container}>
@@ -39,20 +38,16 @@ const LoginScreen = ({ navigation }) => (
           <Button
             title="Login"
             color="#5D0EEA"
-            
-            onPress={() => { navigation.navigate("Map1"), Alert.alert('Login button pressed') }}
+            onPress={() => { navigation.navigate("Map") }}
             
           />
         </View>
-
-
-
-
       </View>
+
       <View style={styles.navigators}>
           <Pressable
             color="#5D0EEA"
-            //leave the Alert there, might want to use for other stuff in the future
+            //leave the Alert there, might want to use for other registration completion in the future
             onPress={() => { navigation.navigate("SignUp1"), Alert.alert('Sign Up button pressed') }}
           >
             <Text style={styles.forgotPasswordStyle}>
