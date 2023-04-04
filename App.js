@@ -15,7 +15,10 @@ import {
   SignUpScreen1,
   SignUpScreen2,
   SignUpScreen3,
-  FavouriteCarparksPage,
+  FavCarparkScreen,
+  SettingsScreen,
+  ProfileScreen,
+  SearchHistoryScreen,
 } from "./screens";
 
 const Stack = createStackNavigator();
@@ -28,11 +31,14 @@ function App() {
         <Stack.Screen name="Map" component={Map} options={{headerShown: false,}} />
         <Stack.Screen name="Carpark" component={CarParkScreen} />
         <Stack.Screen name="CarparkDetails" component={CPDetails} />
-        <Stack.Screen name="FavouriteCarparksPage" component={FavouriteCarparksPage} />
+        <Stack.Screen name="FavouriteCarparks" component={FavCarparkScreen} />
         <Stack.Screen name="ForgetPassword" component={ForgetPasswordScreen} />
         <Stack.Screen name="SignUp1" component={SignUpScreen1} />
         <Stack.Screen name="SignUp2" component={SignUpScreen2} />
         <Stack.Screen name="SignUp3" component={SignUpScreen3} />
+        <Stack.Screen name="Settings" component={SettingsScreen} />
+        <Stack.Screen name="Profile" component={ProfileScreen} />
+        <Stack.Screen name="SearchHistory" component={SearchHistoryScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   )

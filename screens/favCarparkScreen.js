@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { StyleSheet, View, Text, FlatList, TouchableOpacity } from 'react-native';
 
-const FavouriteCarparksPage = ({ navigation }) => {
+const FavCarparkScreen = ({ navigation }) => {
   // Sample data of favourite carparks
   const [favCarparks, setFavCarparks] = useState([]);
 
@@ -86,4 +86,4 @@ const styles = StyleSheet.create({
   });
   
 
-export default FavouriteCarparksPage;
+export default FavCarparkScreen;

@@ -7,7 +7,10 @@ import SignUpScreen1 from "./signUpScreens/signUpScreen1";
 import SignUpScreen2 from "./signUpScreens/signUpScreen2";
 import SignUpScreen3 from "./signUpScreens/signUpScreen3";
 import ForgetPasswordScreen from "./forgetPasswordScreen";
-import FavouriteCarparksPage from "./favescreen";
+import FavCarparkScreen from "./favCarparkScreen";
+import SettingsScreen from "./settingsScreen";
+import ProfileScreen from "./profileScreen";
+import SearchHistoryScreen from "./searchHistoryScreen";
 
 export {
   LoginScreen,
@@ -18,5 +21,8 @@ export {
   SignUpScreen2,
   SignUpScreen3,
   ForgetPasswordScreen,
-  FavouriteCarparksPage,
+  FavCarparkScreen,
+  SettingsScreen,
+  ProfileScreen,
+  SearchHistoryScreen,
 };
