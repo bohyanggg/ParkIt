@@ -2,7 +2,6 @@
 import React from 'react';
 import { createStackNavigator } from "@react-navigation/stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-//TODO bottom tab navigator for main page or map screen
 import { NavigationContainer, DefaultTheme } from "@react-navigation/native";
 
 //screens from index.js
@@ -19,6 +18,7 @@ import {
   SettingsScreen,
   ProfileScreen,
   SearchHistoryScreen,
+  MainContainer
 } from "./screens";
 
 const Stack = createStackNavigator();
@@ -28,6 +28,7 @@ function App() {
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Login">
         <Stack.Screen name="Login" component={LoginScreen} />
+        <Stack.Screen name="MainContainer" component={MainContainer} />
         <Stack.Screen name="Map" component={Map} options={{headerShown: false,}} />
         <Stack.Screen name="Carpark" component={CarParkScreen} />
         <Stack.Screen name="CarparkDetails" component={CPDetails} />

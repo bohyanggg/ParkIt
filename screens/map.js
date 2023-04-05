@@ -21,6 +21,7 @@ export default function Map({navigation}) {
 
   return (
     <View style={styles.container}>
+
       {currentLocation && (
         <MapView
           style={styles.map}
@@ -34,13 +35,6 @@ export default function Map({navigation}) {
           <Marker coordinate={currentLocation.coords} />
         </MapView>
       )}
-      <View>
-        <Button
-          title="Back"
-          color='blue'
-          onPress={() => navigation.navigate("Login")}
-        />
-      </View>
     </View>
 
   );

@@ -11,6 +11,7 @@ import FavCarparkScreen from "./favCarparkScreen";
 import SettingsScreen from "./settingsScreen";
 import ProfileScreen from "./profileScreen";
 import SearchHistoryScreen from "./searchHistoryScreen";
+import MainContainer from "./MainContainer";
 
 export {
   LoginScreen,
@@ -25,4 +26,5 @@ export {
   SettingsScreen,
   ProfileScreen,
   SearchHistoryScreen,
+  MainContainer,
 };

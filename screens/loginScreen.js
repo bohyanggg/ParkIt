@@ -38,7 +38,7 @@ const LoginScreen = ({ navigation }) => (
           <Button
             title="Login"
             color="#5D0EEA"
-            onPress={() => { navigation.navigate("Map") }}
+            onPress={() => { navigation.navigate("MainContainer") }}
             
           />
         </View>

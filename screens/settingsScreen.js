@@ -10,9 +10,9 @@ const SettingsScreen = ({navigation}) => {
               This is the settings page
             </Text>
             <Button
-              title="Button"
+              title="Profile Page"
               color="#5D0EEA"
-              onPress={() => { navigation.navigate("Map") }}
+              onPress={() => { navigation.navigate("Profile") }}
             />
           </View>
     </View>
