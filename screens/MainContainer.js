@@ -13,8 +13,6 @@ import {
   SearchHistoryScreen,
 } from "../screens";
 
-//screen names
-
 const Tab = createBottomTabNavigator();
 
 export default function MainContainer() {
