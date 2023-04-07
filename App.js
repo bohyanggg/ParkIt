@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { createStackNavigator } from "@react-navigation/stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
@@ -11,6 +10,7 @@ import {
   CarParkScreen,
   CPDetails,
   ForgetPasswordScreen,
+  SignUpScreen,
   SignUpScreen1,
   SignUpScreen2,
   SignUpScreen3,
@@ -34,6 +34,7 @@ function App() {
         <Stack.Screen name="CarparkDetails" component={CPDetails} />
         <Stack.Screen name="FavouriteCarparks" component={FavCarparkScreen} />
         <Stack.Screen name="ForgetPassword" component={ForgetPasswordScreen} />
+        <Stack.Screen name="SignUp" component={SignUpScreen} />
         <Stack.Screen name="SignUp1" component={SignUpScreen1} />
         <Stack.Screen name="SignUp2" component={SignUpScreen2} />
         <Stack.Screen name="SignUp3" component={SignUpScreen3} />
