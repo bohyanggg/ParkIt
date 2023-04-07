@@ -18,7 +18,8 @@ const LoginScreen = ({ navigation }) => (
           </View>
           <Separator />
           <View style={{ paddingTop:20}} >
-            <TextInput placeholderTextColor='grey' placeholder='Password' />
+            <TextInput placeholderTextColor='grey' placeholder='Password' 
+            secureTextEntry />
           </View>
           <Separator />
         </View>
