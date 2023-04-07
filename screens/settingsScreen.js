@@ -26,7 +26,7 @@ const SettingsScreen = ({navigation}) => {
               onPress={() => { navigation.navigate("Profile") }}
             />
             <Text>
-              Email: {auth.currentUser?.email} 
+              The account you are in: {auth.currentUser?.email} 
             </Text>
             <Button
               title="Sign Out"
