@@ -10,6 +10,7 @@ import SettingsScreen from "./settingsScreen";
 import ProfileScreen from "./profileScreen";
 import SearchHistoryScreen from "./searchHistoryScreen";
 import MainContainer from "./MainContainer";
+import Html from "./html";
 
 export {
   LoginScreen,
@@ -23,4 +24,5 @@ export {
   ProfileScreen,
   SearchHistoryScreen,
   MainContainer,
+  Html,
 };

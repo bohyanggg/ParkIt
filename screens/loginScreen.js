@@ -82,8 +82,7 @@ const LoginScreen = ({ navigation }) => {
             // uncomment this part to enable the view of the whole map
             title="Original Map Overview"
             color="#5D0EEA"
-            //onPress={() => { navigation.navigate('Html', { source: require('./1.html') }); }}
-            // doesnt work u clown. 
+            onPress={() => { navigation.navigate('bruce_map', { source: require('./1.html') }); }}
             />
             
           </View>
