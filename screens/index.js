@@ -4,9 +4,6 @@ import Map from "./map"
 import CarParkScreen from "./carparkscreen"
 import CPDetails from "./cpdetails"
 import SignUpScreen from "./signUpScreen";
-import SignUpScreen1 from "./signUpScreens/signUpScreen1";
-import SignUpScreen2 from "./signUpScreens/signUpScreen2";
-import SignUpScreen3 from "./signUpScreens/signUpScreen3";
 import ForgetPasswordScreen from "./forgetPasswordScreen";
 import FavCarparkScreen from "./favCarparkScreen";
 import SettingsScreen from "./settingsScreen";
@@ -20,9 +17,6 @@ export {
   CarParkScreen,
   CPDetails,
   SignUpScreen,
-  SignUpScreen1,
-  SignUpScreen2,
-  SignUpScreen3,
   ForgetPasswordScreen,
   FavCarparkScreen,
   SettingsScreen,

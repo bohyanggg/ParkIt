@@ -83,10 +83,9 @@ const LoginScreen = ({ navigation }) => {
         <View style={styles.navigators}>
           <Pressable
               color="#5D0EEA"
-              //leave the Alert there, might want to use for other registration completion features in the future
-              onPress={() => { navigation.replace("SignUp"), Alert.alert('Sign Up button pressed') }}
-            >
-              <Text style={styles.forgotPasswordStyle}>
+              onPress={() => { navigation.replace("SignUp") }}
+          >
+            <Text style={styles.forgotPasswordStyle}>
               Or Sign Up
             </Text>
           </Pressable>
