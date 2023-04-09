@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, FlatList } from 'react-native';
+import { View, Text, FlatList, TextInput, Button } from 'react-native';
 import axios from 'axios';
-
-//This data service will return the list of URA car park details and rates in the JSON format.//
+import MapView, { Marker } from 'react-native-maps';
+import { useNavigation } from '@react-navigation/native';
 function CPDetails() {
   const [data, setData] = useState([]);
   const [token, setToken] = useState('');
-
+  const [searchTerm, setSearchTerm] = useState('');
+  const [selectedLocation, setSelectedLocation] = useState(null);
+  const navigation = useNavigation();
   useEffect(() => {
     const accessKey = 'acb2ead0-8cef-46a5-af01-15d850b437ce';
     const tokenUrl = 'https://www.ura.gov.sg/uraDataService/insertNewToken.action';
@@ -58,7 +60,27 @@ function CPDetails() {
         console.log(error);
       });
   }, [token]);
+//search function
+  const handleSearch = (text) => {
+    setSearchTerm(text);
+    setSelectedLocation(null); // Reset the selected location when a new search term is entered
+  };
 
+  const filteredData = data.filter((item) => {
+    const ppNameMatch = item.ppName.toLowerCase().includes(searchTerm.toLowerCase());
+    const geoMatch = item.geometries.some((geo) =>
+      geo.coordinates.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+    return ppNameMatch || geoMatch;
+  });
+//navigate to Map scren after pressing button
+  const handleSelect = (coordinates) => {
+    setSelectedLocation(coordinates);
+    console.log('Selected location:', coordinates); // Add this line to verify that the selected coordinates are being passed correctly
+    navigation.navigate('Map', { selectedLocation: coordinates });
+  };
+
+  
   const renderItem = ({ item }) => (
     <View key={item.ppCode}>
       <Text>Parking Lot: {item.ppName}</Text>
@@ -69,17 +91,29 @@ function CPDetails() {
       <Text>Parking System: {item.parkingSystem}</Text>
       <Text>Coordinates:</Text>
       {item.geometries.map((geo, index) => (
-        <Text key={`${item.carparkNo}-${item.lotType}-geo-${index}`}>
-          {geo.coordinates}
-        </Text>
+        <Button
+          key={`${item.carparkNo}-${item.lotType}-geo-${index}`}
+          title={`Select`}
+          onPress={() => handleSelect(geo.coordinates)}
+        />
       ))}
     </View>
   );
 
   return (
-    <View>
+    <View style={{ flex: 1 }}>
+      <View style={{ padding: 10, borderColor: 'gray', borderWidth: 1, borderRadius: 4, marginBottom: 10 }}>
+        <TextInput
+          placeholder="Search car park"
+          onChangeText={handleSearch}
+          value={searchTerm}
+        />
+      </View>
+      <MapView style={{ flex: 1 }} initialRegion={{ latitude: 1.3521, longitude: 103.8198, latitudeDelta: 0.0922, longitudeDelta: 0.0421 }}>
+  {selectedLocation && <Marker coordinate={{ latitude: Number(selectedLocation.split(',')[0]), longitude: Number(selectedLocation.split(',')[1]) }} />}
+</MapView>
       <FlatList
-        data={data}
+        data={filteredData}
         renderItem={renderItem}
         keyExtractor={(item, index) => item.ppCode + index}
       />
