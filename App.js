@@ -11,9 +11,6 @@ import {
   CPDetails,
   ForgetPasswordScreen,
   SignUpScreen,
-  SignUpScreen1,
-  SignUpScreen2,
-  SignUpScreen3,
   FavCarparkScreen,
   SettingsScreen,
   ProfileScreen,
@@ -35,9 +32,6 @@ function App() {
         <Stack.Screen name="FavouriteCarparks" component={FavCarparkScreen} />
         <Stack.Screen name="ForgetPassword" component={ForgetPasswordScreen} />
         <Stack.Screen name="SignUp" component={SignUpScreen} />
-        <Stack.Screen name="SignUp1" component={SignUpScreen1} />
-        <Stack.Screen name="SignUp2" component={SignUpScreen2} />
-        <Stack.Screen name="SignUp3" component={SignUpScreen3} />
         <Stack.Screen name="Settings" component={SettingsScreen} />
         <Stack.Screen name="Profile" component={ProfileScreen} />
         <Stack.Screen name="SearchHistory" component={SearchHistoryScreen} />

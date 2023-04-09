@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { KeyboardAvoidingView, StyleSheet, View, Text, Button, Image, TextInput, Pressable, TouchableWithoutFeedback, TouchableOpacity, Keyboard, SafeAreaView, } from 'react-native';
+import { KeyboardAvoidingView, StyleSheet, View, Text, Button, Image, TextInput, Alert, Pressable, TouchableWithoutFeedback, TouchableOpacity, Keyboard, SafeAreaView, } from 'react-native';
 import { auth } from '../firebase/firebaseconfig';
 import { createUserWithEmailAndPassword } from "firebase/auth";
 
@@ -70,7 +70,7 @@ const SignUpScreen = ({ navigation }) => {
               <Button
                 title="Sign Up"
                 color="#5D0EEA"
-                onPress={handleSignUp}
+                onPress={() => { handleSignUp(); Alert.alert('Successfully signed up'); }}
               />
             </View>
         </View>

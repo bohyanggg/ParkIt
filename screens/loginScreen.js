@@ -77,16 +77,21 @@ const LoginScreen = ({ navigation }) => {
               //onPress={() => { navigation.navigate("MainContainer") }}
               onPress={handleLogin}
             />
+                //uncomment this part to enable the view of the whole map
+          // <Button
+           // title="Orinigal Map Overview"
+          //  color="#5D0EEA"
+          //  onPress={() => { navigation.navigate('Html', { source: require('./1.html') }); }}
+           // />
           </View>
         </View>
 
         <View style={styles.navigators}>
           <Pressable
               color="#5D0EEA"
-              //leave the Alert there, might want to use for other registration completion features in the future
-              onPress={() => { navigation.replace("SignUp"), Alert.alert('Sign Up button pressed') }}
-            >
-              <Text style={styles.forgotPasswordStyle}>
+              onPress={() => { navigation.replace("SignUp") }}
+          >
+            <Text style={styles.forgotPasswordStyle}>
               Or Sign Up
             </Text>
           </Pressable>
