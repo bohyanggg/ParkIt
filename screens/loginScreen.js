@@ -77,14 +77,17 @@ const LoginScreen = ({ navigation }) => {
               //onPress={() => { navigation.navigate("MainContainer") }}
               onPress={handleLogin}
             />
-                //uncomment this part to enable the view of the whole map
-          // <Button
-           // title="Orinigal Map Overview"
-          //  color="#5D0EEA"
-          //  onPress={() => { navigation.navigate('Html', { source: require('./1.html') }); }}
-           // />
+
+            <Button
+            // uncomment this part to enable the view of the whole map
+            title="Original Map Overview"
+            color="#5D0EEA"
+            //onPress={() => { navigation.navigate('Html', { source: require('./1.html') }); }}
+            // doesnt work u clown. 
+            />
+            
           </View>
-        </View>
+        </View> 
 
         <View style={styles.navigators}>
           <Pressable
