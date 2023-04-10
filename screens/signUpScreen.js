@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { KeyboardAvoidingView, StyleSheet, View, Text, Button, Image, TextInput, Alert, Pressable, TouchableWithoutFeedback, TouchableOpacity, Keyboard, SafeAreaView, } from 'react-native';
 import { auth, db } from '../firebase/firebaseconfig';
-import { createUserWithEmailAndPassword, sendSignInLinkToEmail, sendEmailVerification } from "firebase/auth";
+import { createUserWithEmailAndPassword, sendEmailVerification } from "firebase/auth";
 
 const Separator = () => <View style={styles.separator} />;
 
@@ -42,6 +42,7 @@ const SignUpScreen = ({ navigation }) => {
             console.log("Registered with: ", user.email);
           })
           .catch(error => alert(error.message))
+
       } else {
         alert("Passwords dont match");
       }

@@ -35,7 +35,7 @@ function App() {
         <Stack.Screen name="Carpark" component={CarParkScreen} />
         <Stack.Screen name="CarparkDetails" component={CPDetails} />
         <Stack.Screen name="FavouriteCarparks" component={FavCarparkScreen} />
-        <Stack.Screen name="ForgetPassword" component={ForgetPasswordScreen} />
+        <Stack.Screen name="ForgetPassword" component={ForgetPasswordScreen} options={{headerShown: false,}} />
         <Stack.Screen name="SignUp" component={SignUpScreen} />
         <Stack.Screen name="Settings" component={SettingsScreen} />
         <Stack.Screen name="Profile" component={ProfileScreen} />
