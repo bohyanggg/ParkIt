@@ -9,6 +9,12 @@ const ProfileScreen = ({navigation}) => {
   return (
 
       <SafeAreaView style={styles.container}>
+         <View style={{ paddingBottom: 20 }}>
+        <Image source={require('../assets/images/manuser.png')} style={styles.image} />
+      </View>
+
+
+
       <View>
         <View>
           <Text style={styles.emailTextStyleStyle}>
