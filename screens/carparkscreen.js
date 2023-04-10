@@ -36,6 +36,7 @@ proj4.defs('EPSG:3414', '+proj=tmerc +lat_0=1.366666666666667 +lon_0=103.8333333
 
 function CarParkScreen() {
   const [data, setData] = useState([]);
+  const [dataFetched, setDataFetched] = useState(false); // new state flag
   const [filteredData, setFilteredData] = useState([]);
   const [token, setToken] = useState('');
   const [loading, setLoading] = useState(true);
@@ -81,27 +82,38 @@ function CarParkScreen() {
     const url = 'https://www.ura.gov.sg/uraDataService/invokeUraDS?service=Car_Park_Availability';
     const accessKey = 'acb2ead0-8cef-46a5-af01-15d850b437ce';
 
-    axios.get(url, {
-      headers: {
-        'AccessKey': accessKey,
-        'Token': token
-      }
-    })
-      .then(response => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(url, {
+          headers: {
+            'AccessKey': accessKey,
+            'Token': token
+          }
+        });
         const data = response.data.Result;
         setData(data);
+        setDataFetched(true); // set flag to true after data is fetched successfully
         setLoading(false);
-      })
-      .catch(error => {
+      } catch (error) {
         console.log(error);
-      });
+        setTimeout(fetchData, 3000); // Retry after 5 seconds
+      }
+    };
+
+    fetchData();
   }, [token]);
+  
+  
 
   const handleSearchLocationChange = (text) => {
     setSearchLocation(text);
   }
 
   const handleSearchLocationSubmit = async () => {
+    if (!dataFetched) { // only allow search if data has been fetched successfully
+      return;
+    }
+
     try {
       setLoading(true);
   
@@ -169,16 +181,20 @@ function CarParkScreen() {
   
   
       
-  const renderItem = ({ item }) => (
-    <View key={`${item.carparkNo}-${item.lotType}`}>
-      <Text>Parking Lot: {item.carparkNo}</Text>
-      <Text>Available Lots: {item.lotsAvailable}</Text>
-      <Text>Lot Type: {item.lotType}</Text>
-      {item.distance !== undefined && (
-        <Text>Distance: {item.distance.toFixed(2)} km</Text>
-      )}
-    </View>
-  );
+  const renderItem = ({ item }) => {
+    console.log('filteredData:', filteredData);
+    return (
+      <View key={`${item.carparkNo}-${item.lotType}`}>
+        <Text>Parking Lot: {item.carparkNo}</Text>
+        <Text>Available Lots: {item.lotsAvailable}</Text>
+        <Text>Lot Type: {item.lotType}</Text>
+        {item.distance !== undefined && (
+          <Text>Distance: {item.distance.toFixed(2)} km</Text>
+        )}
+      </View>
+    );
+  };
+  
   
       
         const keyExtractor = (item, index) => `${item.CarParkID}-${item.LotType}-${index}`;
