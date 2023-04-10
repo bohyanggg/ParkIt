@@ -89,6 +89,12 @@ const LoginScreen = ({ navigation }) => {
             onPress={() => { navigation.navigate('bruce_map', { source: require('./1.html') }); }}
             />
             
+            <Button
+            title="Sample Direction Without Login"
+            color="#5D0EEA"
+            onPress={() => { navigation.navigate('Mapp', { start: '1.3462650062349506, 103.68158398053207', end: '1.2999593486272893, 103.84275231084348' }); }}
+            />
+            
           </View>
         </View> 
 
