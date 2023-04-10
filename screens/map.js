@@ -120,6 +120,7 @@ export default function Map() {
         <Button
           key={`${item.carparkNo}-${item.lotType}-geo-${index}`}
           title={`Select`}
+          color="#5D0EEA"
           onPress={() => handleSelect(geo.coordinates)}
         />
       ))}
