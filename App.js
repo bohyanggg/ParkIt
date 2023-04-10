@@ -25,9 +25,9 @@ const Stack = createStackNavigator();
 function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Profile">
+      <Stack.Navigator initialRouteName="Login">
         <Stack.Screen name="Login" component={LoginScreen} options={{headerShown: false,}}/>
-        <Stack.Screen name="MainContainer" component={MainContainer} options={{headerShown: false,}}/>
+        <Stack.Screen name="MainContainer" component={MainContainer}/>
         <Stack.Screen name="Map" component={Map} options={{headerShown: false,}} />
         <Stack.Screen name="bruce_map" component={Html} />
         <Stack.Screen name="Carpark" component={CarParkScreen} />

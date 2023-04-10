@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { KeyboardAvoidingView, StyleSheet, View, Text, Button, Image, TextInput, Alert, Pressable, TouchableWithoutFeedback, TouchableOpacity, Keyboard, SafeAreaView, } from 'react-native';
-import { auth } from '../firebase/firebaseconfig';
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import { auth, db } from '../firebase/firebaseconfig';
+import { createUserWithEmailAndPassword, sendSignInLinkToEmail, sendEmailVerification } from "firebase/auth";
 
 const Separator = () => <View style={styles.separator} />;
 
@@ -9,25 +9,62 @@ const SignUpScreen = ({ navigation }) => {
 
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [confirmpassword, setconfirmpassword] = useState('');
+  const [firstName, setfirstName] = useState('')
+  const [lastName, setlastName] = useState('')
   
+  //this function navigates user to main screen if user is logged in (which they are after signing up)
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged(user => {
       if (user) {
-        navigation.replace("MainContainer")
+        const uid = user.uid;
+        //setUser(user);
+        navigation.replace("MainContainer");
       }
+      /*
+      else {
+        //user is not logged in
+      }
+      */
     })
-
     return unsubscribe
   }, [])
 
-  const handleSignUp = () => {  
-    //const auth = getAuth();
-    createUserWithEmailAndPassword(auth, email, password)
-      .then(userCredentials => {
-        const user = userCredentials.user;
-        console.log("Registered with: ", user.email);
-      })
-      .catch(error => alert(error.message))
+  
+  // const handleSignUp = async (email, password, firstName, lastName) 
+
+  const handleSignUp = async () => {
+    try {
+      if (password == confirmpassword) {
+        await createUserWithEmailAndPassword(auth, email, password)
+          .then(userCredentials => {
+            const user = userCredentials.user;
+            console.log("Registered with: ", user.email);
+          })
+          .catch(error => alert(error.message))
+      } else {
+        alert("Passwords dont match");
+      }
+    } catch (error) {
+      const errorCode = error.code;
+      let errorMessage;
+      switch (errorCode) {
+        case "auth/email-already-in-use":
+          errorMessage = "Email already in use";
+          break;
+        case "auth/weak-password":
+          errorMessage =
+            "Password must have minimum of eight characters, at least one letter and one number";
+          break;
+        case "auth/invalid-email":
+          errorMessage = "Invalid email";
+          break;
+        default:
+          errorMessage = "Something went wrong";
+          break;
+      } 
+      return { error: errorMessage };
+    }
   }
 
   return(
@@ -47,6 +84,8 @@ const SignUpScreen = ({ navigation }) => {
               <TextInput
                 placeholderTextColor='grey'
                 placeholder='Email'
+                autoCapitalize='none'
+                autoCorrect={false}
                 value = {email}
                 onChangeText = {text => setEmail(text)}
               />
@@ -56,9 +95,23 @@ const SignUpScreen = ({ navigation }) => {
               <TextInput
                 placeholderTextColor='grey'
                 placeholder='Password'
+                autoCapitalize='none'
+                autoCorrect={false}
                 secureTextEntry
                 value = {password}
                 onChangeText = {text => setPassword(text)}
+              />
+            </View>
+            <Separator />
+            <View style={{ paddingTop:20}} >
+              <TextInput
+                placeholderTextColor='grey'
+                placeholder='Confirm password'
+                autoCapitalize='none'
+                autoCorrect={false}
+                secureTextEntry
+                value = {confirmpassword}
+                onChangeText = {text => setconfirmpassword(text)}
               />
             </View>
             <Separator />
@@ -70,15 +123,14 @@ const SignUpScreen = ({ navigation }) => {
               <Button
                 title="Sign Up"
                 color="#5D0EEA"
-                onPress={() => { handleSignUp(); Alert.alert('Successfully signed up'); }}
+                onPress={() => { handleSignUp() }}
               />
             </View>
         </View>
-
+        
         <View style={styles.navigators}>
       
         </View>
-
 
       </SafeAreaView>
     </TouchableWithoutFeedback>

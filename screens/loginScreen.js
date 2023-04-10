@@ -43,6 +43,8 @@ const LoginScreen = ({ navigation }) => {
               <TextInput
                 placeholderTextColor='grey'
                 placeholder='Email'
+                autoCapitalize='none'
+                autoCorrect={false}
                 value = {email}
                 onChangeText = {text => setEmail(text)}
               />
@@ -52,6 +54,8 @@ const LoginScreen = ({ navigation }) => {
               <TextInput
                 placeholderTextColor='grey'
                 placeholder='Password'
+                autoCapitalize='none'
+                autoCorrect={false}
                 secureTextEntry
                 value = {password}
                 onChangeText = {text => setPassword(text)}
