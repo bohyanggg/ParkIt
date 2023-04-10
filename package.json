@@ -20,6 +20,8 @@
     "expo-status-bar": "~1.4.4",
     "firebase": "^9.18.0",
     "google-map-react": "^2.2.0",
+    "isomorphic-fetch": "^3.0.0",
+    "proj4": "^2.9.0",
     "react": "18.2.0",
     "react-native": "0.71.6",
     "react-native-elements": "^3.4.3",
