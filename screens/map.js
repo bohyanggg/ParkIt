@@ -105,6 +105,9 @@ export default function Map() {
     const svy21Coordinates = [parseFloat(x), parseFloat(y)];
     const wgs84Coordinates = proj4(svy21Projection, wgs84Projection, svy21Coordinates);
     setSelectedCoordinates({ latitude: wgs84Coordinates[1], longitude: wgs84Coordinates[0] });
+    setSelectedLocation({ latitude: wgs84Coordinates[1], longitude: wgs84Coordinates[0] });
+    //navigation.navigate("ForgetPassword");
+    
   };
 
   const renderItem = ({ item }) => (
@@ -117,12 +120,14 @@ export default function Map() {
       <Text>Parking System: {item.parkingSystem}</Text>
       <Text>Coordinates:</Text>
       {item.geometries.map((geo, index) => (
+        <View style={styles.buttons}>
         <Button
           key={`${item.carparkNo}-${item.lotType}-geo-${index}`}
           title={`Select`}
           color="#5D0EEA"
           onPress={() => handleSelect(geo.coordinates)}
         />
+        </View>
       ))}
     </View>
   );
@@ -165,14 +170,6 @@ export default function Map() {
           keyExtractor={(item, index) => item.ppCode + index}
         />
       </View>
-
-      <View>
-        <Button
-          title="Back"
-          color="blue"
-          onPress={() => navigation.navigate("Login")}
-        />
-      </View>
     </View>
   );
 }
@@ -190,6 +187,11 @@ const styles = StyleSheet.create({
   listContainer: {
     flex: 1,
   },
+  buttons: {
+    marginVertical: 8,
+    //flexDirection:'row',
+    paddingHorizontal:20,
+    },
 });
 
 /*import React, { useState, useEffect } from 'react';
