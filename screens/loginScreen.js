@@ -123,7 +123,7 @@ const styles = StyleSheet.create({
   navigators: {
     marginVertical: 2,
     paddingHorizontal:'20%',
-    flex: 1,
+    //flex: 1,
   },
   buttons: {
     marginVertical: 8,
