@@ -1,10 +1,7 @@
-import { StyleSheet, View, Text, Button, TextInput, SafeAreaView, Image, } from 'react-native'
+import { StyleSheet, View, Text, Button, TextInput, SafeAreaView, Image, TouchableWithoutFeedback, Keyboard} from 'react-native'
 import React, { useEffect, useState } from 'react'
 import { auth } from '../firebase/firebaseconfig';
-import {
-  sendPasswordResetEmail,
-} from 'firebase/auth';
-
+import { sendPasswordResetEmail } from 'firebase/auth';
 
 const Separator = () => <View style={styles.separator} />;
 
@@ -28,6 +25,7 @@ const ForgetPasswordScreen = ({navigation}) => {
   };
 
   return (
+    <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
       <SafeAreaView style={styles.container}>
         <View>
           <View style={{ paddingBottom:20}}>
@@ -75,7 +73,8 @@ const ForgetPasswordScreen = ({navigation}) => {
           />
         </View>
       </SafeAreaView>
-      );}
+    </TouchableWithoutFeedback>
+  );}
       
       const styles = StyleSheet.create({
       container: {

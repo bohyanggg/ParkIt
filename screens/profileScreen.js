@@ -1,19 +1,31 @@
 //can leave out the user image
 //fetch user info from database
 import { StyleSheet, View, Text, Button, TextInput, SafeAreaView,Image} from 'react-native'
-import React from 'react'
+import React, { useState } from 'react'
+import { auth } from '../firebase/firebaseconfig';
+import { updateProfile } from 'firebase/auth';
 
 const Separator = () => <View style={styles.separator} />;
 
 const ProfileScreen = ({navigation}) => {
-  return (
 
-      <SafeAreaView style={styles.container}>
-         <View style={{ paddingBottom: 20 }}>
+  const [displayname, setdisplayname] = useState('')
+
+  const updateprofile = () => {
+    updateProfile(auth.currentUser, {
+      displayName: "Jane Doe",
+    }).then(() => {
+        Alert('your profile has been updated')
+    }).catch((error) => {
+        Alert(error.message)
+    });
+  }
+
+  return (
+    <SafeAreaView style={styles.container}>
+      <View style={{ paddingBottom: 20 }}>
         <Image source={require('../assets/images/manuser.png')} style={styles.image} />
       </View>
-
-
 
       <View>
         <View>
@@ -61,16 +73,16 @@ const ProfileScreen = ({navigation}) => {
       </View>
 
       <View style={styles.buttons}>
-            <View style={styles.navigators}>
-              <Button
-                title="Save"
-                color="#5D0EEA"
-                onPress={() => { navigation.navigate("Map") }}
-              />
-            </View>
+        <View style={styles.navigators}>
+          <Button
+            title="Save"
+            color="#5D0EEA"
+            onPress={() => { navigation.navigate("Map") }}
+          />
+        </View>
       </View>
       
-      </SafeAreaView>
+    </SafeAreaView>
       );}
       
       const styles = StyleSheet.create({

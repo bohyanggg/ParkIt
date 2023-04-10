@@ -41,8 +41,7 @@ const SignUpScreen = ({ navigation }) => {
             const user = userCredentials.user;
             console.log("Registered with: ", user.email);
           })
-          .catch(error => alert(error.message))
-
+          .catch(error => {alert(error.message)})
       } else {
         alert("Passwords dont match");
       }
@@ -125,6 +124,11 @@ const SignUpScreen = ({ navigation }) => {
                 title="Sign Up"
                 color="#5D0EEA"
                 onPress={() => { handleSignUp() }}
+              />
+              <Button 
+              title="Back to Login"
+              color="#5D0EEA"
+              onPress={() => { navigation.replace("Login") }}
               />
             </View>
         </View>
