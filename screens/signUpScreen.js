@@ -37,7 +37,11 @@ const SignUpScreen = ({ navigation }) => {
             const uid = userCredentials.user.uid
             //to remove this console log when submitting app
             console.log("Registered with: ", user.email);
-            console.log("user uid is : ", uid);
+            //console.log("user uid is : ", uid);
+
+            //will try to work on this part if got time
+            //sendEmailVerification(auth.currentUser);
+            //alert('Verification mail has been sent to your email')
             /*
             const data = {
               id: uid,
@@ -91,6 +95,7 @@ const SignUpScreen = ({ navigation }) => {
               <TextInput
                 placeholderTextColor='grey'
                 placeholder='Full Name'
+                autoCapitalize='none'
                 autoCorrect={false}
                 value = {fullname}
                 onChangeText = {text => setfullname(text)}
