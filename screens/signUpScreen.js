@@ -10,15 +10,13 @@ const SignUpScreen = ({ navigation }) => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [confirmpassword, setconfirmpassword] = useState('');
-  const [firstName, setfirstName] = useState('')
-  const [lastName, setlastName] = useState('')
+  const [fullname, setfullname] = useState('')
   
   //this function navigates user to main screen if user is logged in (which they are after signing up)
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged(user => {
       if (user) {
-        const uid = user.uid;
-        //setUser(user);
+        //user is logged in, direct them to main screen
         navigation.replace("MainContainer");
       }
       /*
@@ -30,16 +28,25 @@ const SignUpScreen = ({ navigation }) => {
     return unsubscribe
   }, [])
 
-  
-  // const handleSignUp = async (email, password, firstName, lastName) 
-
   const handleSignUp = async () => {
     try {
       if (password == confirmpassword) {
         await createUserWithEmailAndPassword(auth, email, password)
           .then(userCredentials => {
             const user = userCredentials.user;
+            const uid = userCredentials.user.uid
+            //to remove this console log when submitting app
             console.log("Registered with: ", user.email);
+            console.log("user uid is : ", uid);
+            /*
+            const data = {
+              id: uid,
+              email,
+              fullname,
+            };
+            const usersRef = db.collection('users')
+              usersRef.doc(uid)
+              */
           })
           .catch(error => {alert(error.message)})
       } else {
@@ -77,10 +84,21 @@ const SignUpScreen = ({ navigation }) => {
 
           <KeyboardAvoidingView> 
             <Text style={{ paddingBottom:20 }}>
-                  Enter your email address and password
+                  Enter your account details!
             </Text>
 
             <View styles={styles.textInputStyling}>
+              <TextInput
+                placeholderTextColor='grey'
+                placeholder='Full Name'
+                autoCorrect={false}
+                value = {fullname}
+                onChangeText = {text => setfullname(text)}
+              />
+            </View>
+            <Separator />
+
+            <View style={{ paddingTop:20}}>
               <TextInput
                 placeholderTextColor='grey'
                 placeholder='Email'
@@ -91,6 +109,7 @@ const SignUpScreen = ({ navigation }) => {
               />
             </View>
             <Separator />
+
             <View style={{ paddingTop:20}} >
               <TextInput
                 placeholderTextColor='grey'
@@ -125,16 +144,18 @@ const SignUpScreen = ({ navigation }) => {
                 color="#5D0EEA"
                 onPress={() => { handleSignUp() }}
               />
-              <Button 
-              title="Back to Login"
-              color="#5D0EEA"
-              onPress={() => { navigation.replace("Login") }}
-              />
             </View>
         </View>
-        
+
         <View style={styles.navigators}>
-      
+          <Text style={{textAlign:'center', paddingTop: 20}}>
+            Already got an account?
+          </Text>
+            <Button 
+              title="Login instead"
+              color="#5D0EEA"
+              onPress={() => { navigation.replace("Login") }}
+            />
         </View>
 
       </SafeAreaView>
@@ -144,7 +165,7 @@ const SignUpScreen = ({ navigation }) => {
 
 const styles = StyleSheet.create({
 container: {
-  flex: 1000,
+  flex: 1,
   backgroundColor: '#fff',
   alignItems: 'center',
   justifyContent: 'center'
@@ -161,7 +182,7 @@ separator: {
 navigators: {
   marginVertical: 2,
   paddingHorizontal:'20%',
-flex: 1,
+  flex: 1,
 },
 buttons: {
   marginVertical: 8,
@@ -173,20 +194,20 @@ image: {
   padding: 16,
 },
 
-
 textInputStyling: {
   borderWidth: 1,
   justifyContent: 'center',
 },
+
 forgotPasswordStyle: {
   color: '#5D0EEA',
   fontSize: 10,
   textAlign: 'right',
 },
+
 forgotPasswordViewStyle: {
   width: '52%',
   paddingTop:10,
-
 }
 });
 

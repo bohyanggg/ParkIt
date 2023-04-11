@@ -14,21 +14,6 @@ const SettingsScreen = ({ navigation }) => {
       .catch(error => alert(error.message))
   }
 
-  const user = auth.currentUser;
-  if (user != null) {
-    //can use these for the user profile
-
-    const displayName = user.displayName;
-    const email = user.email;
-    const photoURL = user.photoURL;
-    const emailVerified = user.emailVerified;
-
-    // The user's ID, unique to the Firebase project. Do NOT use
-    // this value to authenticate with your backend server, if
-    // you have one. Use User.getToken() instead.
-    const uid = user.uid;
-  }
-
   return (
     <View style={styles.container}>
       <View style = {styles.titleview} >
@@ -46,17 +31,11 @@ const SettingsScreen = ({ navigation }) => {
             color="#5D0EEA"
             onPress={() => { navigation.navigate("Profile") }}
           />
-          <Text>
-            The account you are in: {user?.email}
-          </Text>
-          <Text>
-            The user's display name is {user?.displayName}, uid is {user?.uid}
-          </Text>
+
           <Button
             title="Sign Out"
             color="#5D0EEA"
             onPress={handleSignOut}
-          //onPress={() => { navigation.navigate("Login") }}
           />
         </View>
       </View>
