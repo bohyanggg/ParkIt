@@ -34,7 +34,7 @@ const LoginScreen = ({ navigation }) => {
     <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
       <SafeAreaView style={styles.container}>
         <View>
-          <View style={{ paddingBottom:20}}>
+          <View style={{ paddingBottom:20, paddingTop:120}}>
             <Image source={require('../assets/images/ParkItlogo.png')} style={styles.image} />
           </View>
 
