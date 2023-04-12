@@ -42,7 +42,7 @@ export default function MainContainer() {
         
       })}>
 
-      <Tab.Screen name="Map" component={Map} options={{headerShown: false,}}/>
+      <Tab.Screen name="Map" component={CPDetails} options={{headerShown: false,}}/>
       <Tab.Screen name="FavCarparkScreen" component={FavCarparkScreen} options={{headerShown: false,}}/>
       <Tab.Screen name="SearchHistoryScreen" component={SearchHistoryScreen} options={{headerShown: false,}}/>
       <Tab.Screen name="SettingsScreen" component={SettingsScreen} options={{headerShown: false,}}/>
