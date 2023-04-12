@@ -25,16 +25,16 @@ function App() {
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Map1">
         <Stack.Screen name="Login" component={LoginScreen} options={{headerShown: false,}}/>
-        <Stack.Screen name="MainContainer" component={MainContainer} options={{headerShown: false,}} />
+        <Stack.Screen name="MainContainer" component={MainContainer}  />
         <Stack.Screen name="Map" component={Map} options={{headerShown: false,}} />
         <Stack.Screen name="Carpark" component={CarParkScreen} options={{headerShown: false,}} />
         <Stack.Screen name="CarparkDetails" component={CPDetails} options={{headerShown: false,}} />
-        <Stack.Screen name="FavouriteCarparks" component={FavCarparkScreen} options={{headerShown: false,}} />
-        <Stack.Screen name="ForgetPassword" component={ForgetPasswordScreen} options={{headerShown: false,}}  />
-        <Stack.Screen name="SignUp" component={SignUpScreen} options={{headerShown: false,}} />
+        <Stack.Screen name="FavouriteCarparks" component={FavCarparkScreen}  />
+        <Stack.Screen name="ForgetPassword" component={ForgetPasswordScreen}   />
+        <Stack.Screen name="SignUp" component={SignUpScreen} />
         <Stack.Screen name="Settings" component={SettingsScreen} options={{headerShown: false,}} />
-        <Stack.Screen name="Profile" component={ProfileScreen} options={{headerShown: false,}} />
-        <Stack.Screen name="SearchHistory" component={SearchHistoryScreen} options={{headerShown: false,}} />
+        <Stack.Screen name="Profile" component={ProfileScreen}  />
+        <Stack.Screen name="SearchHistory" component={SearchHistoryScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   )
