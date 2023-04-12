@@ -1,0 +1,85 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA9r857677fzdUPzan1mCQk4OGFayAsb_M"></script>
+
+  <script>
+   function initialize() {
+var myCenter = new google.maps.LatLng(1.309565355247124, 103.85600729600729);
+var myCenter1 = new google.maps.LatLng(1.302150960482361, 103.7629826761066);
+var myCenter2 = new google.maps.LatLng(1.2974418490668491, 103.84752145369698);
+var myCenter3 = new google.maps.LatLng(1.2800552207193099, 103.80204646264798);
+var myCenter4 = new google.maps.LatLng(1.4621136041162301, 103.83778787294374);
+
+
+var mapProp = {
+center: myCenter,
+zoom: 11.5,
+mapTypeId: google.maps.MapTypeId.ROADMAP
+};
+var map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
+
+var marker=new google.maps.Marker({
+position:myCenter,
+});
+
+var marker1=new google.maps.Marker({
+position:myCenter1,
+});
+
+var marker2=new google.maps.Marker({
+position:myCenter2,
+});
+
+var marker3=new google.maps.Marker({
+position:myCenter3,
+});
+
+var marker4=new google.maps.Marker({
+position:myCenter4,
+});
+
+marker.setMap(map);
+var infowindow = new google.maps.InfoWindow({
+content:"Mustafa Centre Carpark Rating: 4.1 by 515 People" // modify information as you want, like "Here's your destination!"
+});
+
+marker1.setMap(map);
+var infowindow1 = new google.maps.InfoWindow({
+content:"West Coast Park Car Park 3 Rating: 4.4 by 356 People" // modify information as you want, like "Here's your destination!"
+});
+
+marker2.setMap(map);
+var infowindow2 = new google.maps.InfoWindow({
+content:"Fort Canning Car Park A Rating: 4.6 by 20 People" // modify information as you want, like "Here's your destination!"
+});
+
+marker3.setMap(map);
+var infowindow3 = new google.maps.InfoWindow({
+content:"HortPark Car Park Rating: 4.5 by 31 People" // modify information as you want, like "Here's your destination!"
+});
+
+marker4.setMap(map);
+var infowindow4= new google.maps.InfoWindow({
+content:"Sembawang Park Car Park 1 Rating: 4.3 by 47 People" // modify information as you want, like "Here's your destination!"
+});
+
+
+infowindow.open(map,marker);
+infowindow1.open(map,marker1);
+infowindow2.open(map,marker2);
+infowindow3.open(map,marker3);
+infowindow4.open(map,marker4);
+
+}
+
+google.maps.event.addDomListener(window, 'load', initialize);
+
+  </script>
+</head>
+
+<body>
+    <div id="googleMap" style="width:100vw;height:100vh;"></div>
+</body>
+</html>
