@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { KeyboardAvoidingView, StyleSheet, View, Text, Button, Image, TextInput, Alert, Pressable, TouchableWithoutFeedback, TouchableOpacity, Keyboard, SafeAreaView, } from 'react-native';
-import { auth, db } from '../firebase/firebaseconfig';
-import { createUserWithEmailAndPassword, sendEmailVerification } from "firebase/auth";
+import { auth } from '../firebase/firebaseconfig';
+import { createUserWithEmailAndPassword } from "firebase/auth";
 
 const Separator = () => <View style={styles.separator} />;
 
@@ -9,73 +9,25 @@ const SignUpScreen = ({ navigation }) => {
 
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-  const [confirmpassword, setconfirmpassword] = useState('');
-  const [fullname, setfullname] = useState('')
   
-  //this function navigates user to main screen if user is logged in (which they are after signing up)
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged(user => {
       if (user) {
-        //user is logged in, direct them to main screen
-        navigation.replace("MainContainer");
+        navigation.replace("MainContainer")
       }
-      /*
-      else {
-        //user is not logged in
-      }
-      */
     })
+
     return unsubscribe
   }, [])
 
-  const handleSignUp = async () => {
-    try {
-      if (password == confirmpassword) {
-        await createUserWithEmailAndPassword(auth, email, password)
-          .then(userCredentials => {
-            const user = userCredentials.user;
-            const uid = userCredentials.user.uid
-            //to remove this console log when submitting app
-            console.log("Registered with: ", user.email);
-            //console.log("user uid is : ", uid);
-
-            //will try to work on this part if got time
-            //sendEmailVerification(auth.currentUser);
-            //alert('Verification mail has been sent to your email')
-            /*
-            const data = {
-              id: uid,
-              email,
-              fullname,
-            };
-            const usersRef = db.collection('users')
-              usersRef.doc(uid)
-              */
-          })
-          .catch(error => {alert(error.message)})
-      } else {
-        alert("Passwords dont match");
-      }
-    } catch (error) {
-      const errorCode = error.code;
-      let errorMessage;
-      switch (errorCode) {
-        case "auth/email-already-in-use":
-          errorMessage = "Email already in use";
-          break;
-        case "auth/weak-password":
-          errorMessage =
-            "Password must have minimum of eight characters, at least one letter and one number";
-          break;
-        case "auth/invalid-email":
-          errorMessage = "Invalid email";
-          break;
-        default:
-          errorMessage = "Something went wrong";
-          break;
-      } 
-      return { error: errorMessage };
-    }
+  const handleSignUp = () => {  
+    //const auth = getAuth();
+    createUserWithEmailAndPassword(auth, email, password)
+      .then(userCredentials => {
+        const user = userCredentials.user;
+        console.log("Registered with: ", user.email);
+      })
+      .catch(error => alert(error.message))
   }
 
   return(
@@ -88,54 +40,25 @@ const SignUpScreen = ({ navigation }) => {
 
           <KeyboardAvoidingView> 
             <Text style={{ paddingBottom:20 }}>
-                  Enter your account details!
+                  Enter your email address and password
             </Text>
 
             <View styles={styles.textInputStyling}>
               <TextInput
                 placeholderTextColor='grey'
-                placeholder='Full Name'
-                autoCapitalize='none'
-                autoCorrect={false}
-                value = {fullname}
-                onChangeText = {text => setfullname(text)}
-              />
-            </View>
-            <Separator />
-
-            <View style={{ paddingTop:20}}>
-              <TextInput
-                placeholderTextColor='grey'
                 placeholder='Email'
-                autoCapitalize='none'
-                autoCorrect={false}
                 value = {email}
                 onChangeText = {text => setEmail(text)}
               />
             </View>
             <Separator />
-
             <View style={{ paddingTop:20}} >
               <TextInput
                 placeholderTextColor='grey'
                 placeholder='Password'
-                autoCapitalize='none'
-                autoCorrect={false}
                 secureTextEntry
                 value = {password}
                 onChangeText = {text => setPassword(text)}
-              />
-            </View>
-            <Separator />
-            <View style={{ paddingTop:20}} >
-              <TextInput
-                placeholderTextColor='grey'
-                placeholder='Confirm password'
-                autoCapitalize='none'
-                autoCorrect={false}
-                secureTextEntry
-                value = {confirmpassword}
-                onChangeText = {text => setconfirmpassword(text)}
               />
             </View>
             <Separator />
@@ -147,21 +70,15 @@ const SignUpScreen = ({ navigation }) => {
               <Button
                 title="Sign Up"
                 color="#5D0EEA"
-                onPress={() => { handleSignUp() }}
+                onPress={() => { handleSignUp(); Alert.alert('Successfully signed up'); }}
               />
             </View>
         </View>
 
         <View style={styles.navigators}>
-          <Text style={{textAlign:'center', paddingTop: 20}}>
-            Already got an account?
-          </Text>
-            <Button 
-              title="Login instead"
-              color="#5D0EEA"
-              onPress={() => { navigation.replace("Login") }}
-            />
+      
         </View>
+
 
       </SafeAreaView>
     </TouchableWithoutFeedback>
@@ -170,7 +87,7 @@ const SignUpScreen = ({ navigation }) => {
 
 const styles = StyleSheet.create({
 container: {
-  flex: 1,
+  flex: 1000,
   backgroundColor: '#fff',
   alignItems: 'center',
   justifyContent: 'center'
@@ -187,7 +104,7 @@ separator: {
 navigators: {
   marginVertical: 2,
   paddingHorizontal:'20%',
-  flex: 1,
+flex: 1,
 },
 buttons: {
   marginVertical: 8,
@@ -199,20 +116,20 @@ image: {
   padding: 16,
 },
 
+
 textInputStyling: {
   borderWidth: 1,
   justifyContent: 'center',
 },
-
 forgotPasswordStyle: {
   color: '#5D0EEA',
   fontSize: 10,
   textAlign: 'right',
 },
-
 forgotPasswordViewStyle: {
   width: '52%',
   paddingTop:10,
+
 }
 });
 

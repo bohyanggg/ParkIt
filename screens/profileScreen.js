@@ -1,56 +1,14 @@
 //can leave out the user image
 //fetch user info from database
 import { StyleSheet, View, Text, Button, TextInput, SafeAreaView,Image} from 'react-native'
-import React, { useState, useEffect } from 'react'
-import { auth, db } from '../firebase/firebaseconfig';
-import { updateProfile } from 'firebase/auth';
-import { QuerySnapshot, collection, addDoc, doc, getDoc, setDoc } from "firebase/firestore"; 
-
+import React from 'react'
 
 const Separator = () => <View style={styles.separator} />;
 
 const ProfileScreen = ({navigation}) => {
-
-  const user = auth.currentUser;
-  //doesnt work yet
-  const fetchData = async () => {
-    const userDocRef = doc(db, "users", auth.currentUser.uid);
-    const docSnap = await getDoc(userDocRef);
-    console.log("testing")
-    let temp = {
-      FullName: "",
-    };
-    if (docSnap.exists()) {
-      const user = docSnap.data();
-      temp = {
-        FullName: user.fullname,
-      };
-      return temp;
-    }
-    return temp;
-  };
-  
   return (
-    <SafeAreaView style={styles.container}>
-      <View style={{ paddingBottom: 20 }}>
-        <Image source={require('../assets/images/manuser.png')} style={styles.image} />
-      </View>
 
-      <View>
-        <Text>
-          The account you are in: {user?.email}
-        </Text>
-        <Text>
-          The user's display name is {user?.displayName}, uid is {user?.uid}
-        </Text>
-      </View>
-
-      <View>
-        <Text>
-          {}
-        </Text>
-      </View>
-
+      <SafeAreaView style={styles.container}>
       <View>
         <View>
           <Text style={styles.emailTextStyleStyle}>
@@ -84,8 +42,8 @@ const ProfileScreen = ({navigation}) => {
       <View>
         <View>
           <Text style={styles.emailTextStyleStyle}>
-            Phone Number
-          </Text>
+                 Phone Number
+               </Text>
         </View>
       
         <View>
@@ -97,16 +55,16 @@ const ProfileScreen = ({navigation}) => {
       </View>
 
       <View style={styles.buttons}>
-        <View style={styles.navigators}>
-          <Button
-            title="Save"
-            color="#5D0EEA"
-            onPress={() => { fetchData() }}
-          />
-        </View>
+            <View style={styles.navigators}>
+              <Button
+                title="Save"
+                color="#5D0EEA"
+                onPress={() => { navigation.navigate("Map") }}
+              />
+            </View>
       </View>
       
-    </SafeAreaView>
+      </SafeAreaView>
       );}
       
       const styles = StyleSheet.create({
