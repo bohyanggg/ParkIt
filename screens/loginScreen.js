@@ -87,12 +87,17 @@ const LoginScreen = ({ navigation }) => {
               color="#5D0EEA"
               onPress={handleLogin}
             />
-          {/* uncomment this part to enable the view of the whole map */}
-        {/* <Button
-              title="Orinigal Map Overview"
+         <Button
+              title="Map Overview"
               color="#5D0EEA"
-              onPress={() => { navigation.navigate('Html', { source: require('./1.html') }); }}
-            /> */}
+              onPress={() => { navigation.navigate('Sample List of Car Parks', { source: require('./2.html') }); }}
+          /> 
+
+         <Button
+            title="Sample Direction"
+            color="#5D0EEA"
+            onPress={() => { navigation.navigate('mapWithoutLogin', { start: '1.3462650062349506, 103.68158398053207', end: '1.2999593486272893, 103.84275231084348' }); }}
+            /> 
           </View>
         </View>
 
