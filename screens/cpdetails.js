@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, FlatList, ActivityIndicator, Button, TextInput, StyleSheet } from 'react-native';
+import { View, Text, FlatList, ActivityIndicator, Button, TextInput, StyleSheet, Pressable } from 'react-native';
 import axios from 'axios';
 import MapView, { Marker } from 'react-native-maps';
 import proj4 from 'proj4';
 import fetch from 'isomorphic-fetch';
+import {  addToHistory, history } from './history'
 
 function deg2rad(deg) {
   return deg * (Math.PI / 180);
@@ -35,6 +36,7 @@ proj4.defs('EPSG:3414', '+proj=tmerc +lat_0=1.366666666666667 +lon_0=103.8333333
 
 
 function CPDetails() {
+
   const [data, setData] = useState([]);
   const [dataFetched, setDataFetched] = useState(false); // new state flag
   const [filteredData, setFilteredData] = useState([]);
@@ -48,6 +50,12 @@ function CPDetails() {
     longitudeDelta: 0.3
   });
   const [error, setError] = useState(null);
+  const handleButtonPress =()=>{
+    handleSearchLocationSubmit;
+  //   console.log(searchLocation);
+  //  addToHistory(searchLocation);
+   
+ };
   
   useEffect(() => {
     const accessKey = 'acb2ead0-8cef-46a5-af01-15d850b437ce';
@@ -116,6 +124,8 @@ function CPDetails() {
 
     try {
       setLoading(true);
+          console.log(searchLocation);
+   addToHistory(searchLocation);
   
       // Use the OpenStreetMap Nominatim API to get the coordinates of the entered location
       const geocodeUrl = `https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(searchLocation)}&format=json&addressdetails=1&limit=1`;
@@ -211,7 +221,9 @@ function CPDetails() {
     
     console.log('filteredData:', filteredData);
     return (
+      
       <View style={{ padding:10 }}>
+        <Pressable android_ripple={{color:'#dddddd'}}  style={({pressed})=>pressed && styles.pressedItem}>
       <View style={styles.container} key={item.ppCode} >
         <Text style={{ color:'white' }}>Parking Lot: {item.ppName}</Text>
         <Text style={{ color:'white' }}>Available Lots: {item.parkCapacity}</Text>
@@ -223,7 +235,9 @@ function CPDetails() {
           <Text style={{ color:'white' }}>Distance: {item.distance.toFixed(2)} km</Text>
         )}
       </View>
+      </Pressable>
       </View>
+     
     );
   };
   
@@ -244,7 +258,7 @@ function CPDetails() {
       
         return (
           <View style={{ flex: 1 }}>
-    <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+    <View style={{ flexDirection: 'row', alignItems: 'center', paddingHorizontal:3 }}>
       <TextInput
         style={{ flex: 1, height: 40, borderColor: 'gray', borderWidth: 1 }}
         onChangeText={handleSearchLocationChange}
@@ -254,6 +268,7 @@ function CPDetails() {
       <Button
         title="Search"
         onPress={handleSearchLocationSubmit}
+        color="#5D0EEA"
       />
     </View>
     {error && <Text style={{ color: 'red' }}>{error}</Text>}
