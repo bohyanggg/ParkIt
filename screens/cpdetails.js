@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, FlatList, ActivityIndicator, Button, TextInput } from 'react-native';
+import { View, Text, FlatList, ActivityIndicator, Button, TextInput, StyleSheet } from 'react-native';
 import axios from 'axios';
 import MapView, { Marker } from 'react-native-maps';
 import proj4 from 'proj4';
@@ -211,16 +211,18 @@ function CPDetails() {
     
     console.log('filteredData:', filteredData);
     return (
-      <View key={item.ppCode}>
-        <Text>Parking Lot: {item.ppName}</Text>
-        <Text>Available Lots: {item.parkCapacity}</Text>
-        <Text>Weekday Rate: {item.weekdayRate}</Text>
-        <Text>Saturday Rate: {item.satdayRate}</Text>
-        <Text>Sunday/PH Rate: {item.sunPHRate}</Text>
-        <Text>Parking System: {item.parkingSystem}</Text>
+      <View style={{ padding:10 }}>
+      <View style={styles.container} key={item.ppCode} >
+        <Text style={{ color:'white' }}>Parking Lot: {item.ppName}</Text>
+        <Text style={{ color:'white' }}>Available Lots: {item.parkCapacity}</Text>
+        <Text style={{ color:'white' }}>Weekday Rate: {item.weekdayRate}</Text>
+        <Text style={{ color:'white' }}>Saturday Rate: {item.satdayRate}</Text>
+        <Text style={{ color:'white' }}>Sunday/PH Rate: {item.sunPHRate}</Text>
+        <Text style={{ color:'white' }}>Parking System: {item.parkingSystem}</Text>
         {item.distance !== undefined && (
-          <Text>Distance: {item.distance.toFixed(2)} km</Text>
+          <Text style={{ color:'white' }}>Distance: {item.distance.toFixed(2)} km</Text>
         )}
+      </View>
       </View>
     );
   };
@@ -297,4 +299,13 @@ function CPDetails() {
   </View>
 );
 }     
+const styles = StyleSheet.create({
+  container: {
+    borderWidth:1,
+    padding: 10,
+    borderRadius: 20,
+    backgroundColor: '#5D0EEA',
+  },
+
+});
       export default CPDetails;
