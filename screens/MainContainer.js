@@ -27,13 +27,13 @@ export default function MainContainer() {
           if (rn == "Map") {
             iconName = focused ? 'home' : 'home-outline';
           }
-          else if (rn == "FavCarparkScreen") {
+          else if (rn == "Favourite Carpark") {
             iconName = focused ? 'star' : 'star-outline';
           }
-          else if (rn == "SearchHistoryScreen") {
+          else if (rn == "Search History") {
             iconName = focused ? 'search-circle' : 'search-circle-outline';
           }
-          else if (rn == "SettingsScreen") {
+          else if (rn == "Settings") {
             iconName = focused ? 'settings' : 'settings-outline';
           }
 
@@ -42,10 +42,10 @@ export default function MainContainer() {
         
       })}>
 
-      <Tab.Screen name="Map" component={CPDetails} options={{headerShown: false,}}/>
-      <Tab.Screen name="FavCarparkScreen" component={FavCarparkScreen} options={{headerShown: false,}}/>
-      <Tab.Screen name="SearchHistoryScreen" component={SearchHistoryScreen} options={{headerShown: false,}}/>
-      <Tab.Screen name="SettingsScreen" component={SettingsScreen} options={{headerShown: false,}}/>
+      <Tab.Screen name="Map" component={CPDetails} />
+      <Tab.Screen name="Favourite Carpark" component={FavCarparkScreen} />
+      <Tab.Screen name="Search History" component={SearchHistoryScreen} />
+      <Tab.Screen name="Settings" component={SettingsScreen} />
     </Tab.Navigator>
 
   );

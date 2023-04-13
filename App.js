@@ -11,10 +11,7 @@ import {
   CPDetails,
   ForgetPasswordScreen,
   SignUpScreen,
-  FavCarparkScreen,
-  SettingsScreen,
   ProfileScreen,
-  SearchHistoryScreen,
 } from "./screens";
 
 import MainContainer from "./screens/MainContainer"
@@ -26,16 +23,13 @@ function App() {
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Login">
         <Stack.Screen name="Login" component={LoginScreen} options={{headerShown: false,}}/>
-        <Stack.Screen name="MainContainer" component={MainContainer}  />
-        <Stack.Screen name="Map" component={Map} options={{headerShown: false,}} />
+        <Stack.Screen name="MainContainer" component={MainContainer} options={{headerShown: false,}} />
+        <Stack.Screen name="Map" component={Map} />
         <Stack.Screen name="Carpark" component={CarParkScreen} options={{headerShown: false,}} />
         <Stack.Screen name="CarparkDetails" component={CPDetails} options={{headerShown: false,}} />
-        <Stack.Screen name="FavouriteCarparks" component={FavCarparkScreen}  />
         <Stack.Screen name="ForgetPassword" component={ForgetPasswordScreen}   />
         <Stack.Screen name="SignUp" component={SignUpScreen} />
-        <Stack.Screen name="Settings" component={SettingsScreen} options={{headerShown: false,}} />
         <Stack.Screen name="Profile" component={ProfileScreen}  />
-        <Stack.Screen name="SearchHistory" component={SearchHistoryScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   )

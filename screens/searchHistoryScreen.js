@@ -7,7 +7,7 @@ const SearchHistoryScreen = ({navigation}) => {
       <SafeAreaView style={styles.container}>
         <View style={styles.buttons}>
           <Text>
-            This is the Search History Screen. We can skip this screen if we dont have time - not an essential component
+            Lets do a hardcode of this screen.
           </Text>
         </View>
       </SafeAreaView>

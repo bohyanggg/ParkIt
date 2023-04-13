@@ -26,7 +26,6 @@ const FavCarparkScreen = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.header}>Favourite Carparks</Text>
       {favCarparks.length > 0 ? (
         <FlatList
           data={favCarparks}

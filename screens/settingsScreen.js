@@ -1,6 +1,5 @@
-// can just implement user profile and logout
 import React from 'react'
-import { StyleSheet, Text, View, Button, Image } from 'react-native';
+import { StyleSheet, Text, View, Button, Image, Pressable } from 'react-native';
 import { auth } from '../firebase/firebaseconfig';
 
 const SettingsScreen = ({ navigation }) => {
@@ -16,28 +15,43 @@ const SettingsScreen = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
-      <View style = {styles.titleview} >
-        <Text style={styles.title}>Settings</Text>
+      <View style={styles.flexboxcontainer}>
+        <Pressable style={styles.boxes}>
+          <Text>
+            Notifications
+          </Text>
+        </Pressable>
+        <Pressable style={styles.boxes} onPress={() => { navigation.navigate("Profile") }}>
+          <Text>
+            Profile
+          </Text>
+        </Pressable>
       </View>
 
-      <View style = {{    alignItems: 'center',justifyContent: 'center',}}>
-        <View style={{ paddingBottom: 20 }}>
-          <Image source={require('../assets/images/manuser.png')} style={styles.image} />
-        </View>
-        <View style={styles.navigators}>
+      <View style={styles.flexboxcontainer}>
+        <Pressable style={styles.boxes}>
+          <Text>
+            Language
+          </Text>
+        </Pressable>
+        <Pressable style={styles.boxes}>
+          <Text>
+            Terms of Use
+          </Text>
+        </Pressable>
+      </View>
 
-          <Button
-            title="Edit Profile Info"
-            color="#5D0EEA"
-            onPress={() => { navigation.navigate("Profile") }}
-          />
-
-          <Button
-            title="Sign Out"
-            color="#5D0EEA"
-            onPress={handleSignOut}
-          />
-        </View>
+      <View style={styles.flexboxcontainer}>
+        <Pressable style={styles.boxes}>
+          <Text>
+            Privacy Policy
+          </Text>
+        </Pressable>
+        <Pressable style={styles.boxes} onPress={handleSignOut}>
+          <Text>
+            Log Out
+          </Text>
+        </Pressable>
       </View>
     </View>
   );
@@ -47,34 +61,28 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    // alignItems: 'center',
-    // justifyContent: 'center',
-  },
-  navigators: {
     marginVertical: 2,
-    paddingHorizontal: '20%',
-    //flex: 1,
+    flexDirection: 'column',
+    paddingHorizontal: '5%',
   },
+
+  flexboxcontainer: {
+    flex: 1,
+    flexDirection: 'row',
+  },
+  boxes: {
+    padding: '5%',
+    margin: '3%',
+    flex: 1,
+    backgroundColor: "#5D0EEA"
+  },
+
   buttons: {
     marginVertical: 8,
     flexDirection: 'row',
     paddingTop: 20,
   },
-  title: {
-    textAlign: 'center',
-    fontSize: 30,
-    // backgroundColor: '#0a9',
-    padding: 5,
-    marginBottom: 20,
-    fontWeight: 'bold',
-    
-  },
-  titleview:{
-    padding:50,
-    paddingBottom: 100,
 
-    
-  }
 });
 
 export default SettingsScreen;
