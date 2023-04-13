@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, FlatList, ActivityIndicator, Button, TextInput } from 'react-native';
+
 import axios from 'axios';
 import MapView, { Marker } from 'react-native-maps';
 import proj4 from 'proj4';
 import fetch from 'isomorphic-fetch';
+import {  addToHistory, history } from './history'
+
 
 function deg2rad(deg) {
   return deg * (Math.PI / 180);
@@ -35,6 +38,15 @@ proj4.defs('EPSG:3414', '+proj=tmerc +lat_0=1.366666666666667 +lon_0=103.8333333
 
 
 function CarParkScreen() {
+  
+//   const [history, setHistory] = useState([]);
+  
+//   function addHistory(enteredGoalText) {
+//     setHistory((currentHistory) => [...currentHistory, { text: enteredGoalText, id: Math.random().toString() }])
+//   };
+//   function historyInputHander(enteredText) {
+//     setHistory(enteredText);
+// };
   const [data, setData] = useState([]);
   const [dataFetched, setDataFetched] = useState(false); // new state flag
   const [filteredData, setFilteredData] = useState([]);
@@ -48,6 +60,16 @@ function CarParkScreen() {
     longitudeDelta: 0.3
   });
   const [error, setError] = useState(null);
+  const handleChangeText = (enteredText) => {
+    handleSearchLocationChange(enteredText);
+    
+  };
+  const handleButtonPress =()=>{
+     console.log(searchLocation);
+     handleSearchLocationSubmit;
+    addToHistory(searchLocation);
+    
+  };
   
   useEffect(() => {
     const accessKey = 'acb2ead0-8cef-46a5-af01-15d850b437ce';
@@ -103,20 +125,21 @@ function CarParkScreen() {
     fetchData();
   }, [token]);
   
-  
+
 
   const handleSearchLocationChange = (text) => {
     setSearchLocation(text);
   }
 
   const handleSearchLocationSubmit = async () => {
+    //
     if (!dataFetched) { // only allow search if data has been fetched successfully
       return;
     }
 
     try {
       setLoading(true);
-  
+      addToHistory(searchLocation);
       // Use the OpenStreetMap Nominatim API to get the coordinates of the entered location
       const geocodeUrl = `https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(searchLocation)}&format=json&addressdetails=1&limit=1`;
       const response = await fetch(geocodeUrl);
@@ -127,7 +150,7 @@ function CarParkScreen() {
       }
   
       const location = geocodeResponse[0];
-      console.log('Location:', location);
+      //console.log('Location:', location);
       console.log('Latitude:', location.lat);
       console.log('Longitude:', location.lon);
   
@@ -177,12 +200,13 @@ function CarParkScreen() {
       setLoading(false);
     }
   };
+
   
   
   
       
   const renderItem = ({ item }) => {
-    console.log('filteredData:', filteredData);
+    //console.log('filteredData:', filteredData);
     return (
       <View key={`${item.carparkNo}-${item.lotType}`}>
         <Text>Parking Lot: {item.carparkNo}</Text>
@@ -208,17 +232,20 @@ function CarParkScreen() {
         }
       
         return (
+          
           <View style={{ flex: 1 }}>
+            
     <View style={{ flexDirection: 'row', alignItems: 'center' }}>
       <TextInput
         style={{ flex: 1, height: 40, borderColor: 'gray', borderWidth: 1 }}
-        onChangeText={handleSearchLocationChange}
+        onChangeText={handleChangeText}
         value={searchLocation}
         placeholder="Enter location"
       />
       <Button
         title="Search"
-        onPress={handleSearchLocationSubmit}
+        
+         onPress={handleButtonPress}
       />
     </View>
     {error && <Text style={{ color: 'red' }}>{error}</Text>}
