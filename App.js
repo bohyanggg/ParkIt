@@ -7,11 +7,13 @@ import { NavigationContainer, DefaultTheme } from "@react-navigation/native";
 import {
   LoginScreen,
   Map,
+  mapWithoutLogin,
   CarParkScreen,
   CPDetails,
   ForgetPasswordScreen,
   SignUpScreen,
   ProfileScreen,
+  Html
 } from "./screens";
 
 import MainContainer from "./screens/MainContainer"
@@ -25,6 +27,8 @@ function App() {
         <Stack.Screen name="Login" component={LoginScreen} options={{headerShown: false,}}/>
         <Stack.Screen name="MainContainer" component={MainContainer} options={{headerShown: false,}} />
         <Stack.Screen name="Map" component={Map} />
+        <Stack.Screen name="mapWithoutLogin" component={mapWithoutLogin} options={{headerShown: false,}} />
+        <Stack.Screen name="Sample List of Car Parks" component={Html} />
         <Stack.Screen name="Carpark" component={CarParkScreen} options={{headerShown: false,}} />
         <Stack.Screen name="CarparkDetails" component={CPDetails} options={{headerShown: false,}} />
         <Stack.Screen name="ForgetPassword" component={ForgetPasswordScreen}   />
