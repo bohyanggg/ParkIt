@@ -1,6 +1,7 @@
 import React from 'react'
 import { StyleSheet, Text, View, Button, Image, Pressable } from 'react-native';
 import { auth } from '../firebase/firebaseconfig';
+import Ionicons from 'react-native-vector-icons/Ionicons'
 
 const SettingsScreen = ({ navigation }) => {
 
@@ -17,12 +18,14 @@ const SettingsScreen = ({ navigation }) => {
     <View style={styles.container}>
       <View style={styles.flexboxcontainer}>
         <Pressable style={styles.boxes}>
-          <Text>
+          <Ionicons name={'notifications-circle-outline'} size={40} color="white" padding='10%' />
+          <Text style={styles.itemcolor}>
             Notifications
           </Text>
         </Pressable>
         <Pressable style={styles.boxes} onPress={() => { navigation.navigate("Profile") }}>
-          <Text>
+          <Ionicons name={'person-circle-outline'} size={40} color="white" padding='10%'/>
+          <Text style={styles.itemcolor}>
             Profile
           </Text>
         </Pressable>
@@ -30,12 +33,14 @@ const SettingsScreen = ({ navigation }) => {
 
       <View style={styles.flexboxcontainer}>
         <Pressable style={styles.boxes}>
-          <Text>
+          <Ionicons name={'language-outline'} size={40} color="white" padding='10%' />
+          <Text style={styles.itemcolor}>
             Language
           </Text>
         </Pressable>
         <Pressable style={styles.boxes}>
-          <Text>
+          <Ionicons name={'reader-outline'} size={40} color="white" padding='10%'/>
+          <Text style={styles.itemcolor}>
             Terms of Use
           </Text>
         </Pressable>
@@ -43,12 +48,14 @@ const SettingsScreen = ({ navigation }) => {
 
       <View style={styles.flexboxcontainer}>
         <Pressable style={styles.boxes}>
-          <Text>
+          <Ionicons name={'information-circle-outline'} size={40} color="white" padding='10%'/>
+          <Text style={styles.itemcolor}>
             Privacy Policy
           </Text>
         </Pressable>
         <Pressable style={styles.boxes} onPress={handleSignOut}>
-          <Text>
+          <Ionicons name={'power-outline'} size={35} color="white" padding='10%'/>
+          <Text style={styles.itemcolor}>
             Log Out
           </Text>
         </Pressable>
@@ -74,7 +81,14 @@ const styles = StyleSheet.create({
     padding: '5%',
     margin: '3%',
     flex: 1,
-    backgroundColor: "#5D0EEA"
+    backgroundColor: "#5D0EEA",
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+
+  itemcolor: {
+    color: '#fff',
+    fontSize: 18
   },
 
   buttons: {

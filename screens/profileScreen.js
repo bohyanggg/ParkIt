@@ -38,10 +38,10 @@ const ProfileScreen = ({navigation}) => {
 
       <View>
         <Text>
-          The account you are in: {user?.email}
+          Email: {user?.email}
         </Text>
         <Text>
-          The user's display name is {user?.displayName}, uid is {user?.uid}
+          Display Name: {user?.displayName}
         </Text>
       </View>
 
@@ -76,21 +76,6 @@ const ProfileScreen = ({navigation}) => {
         <View>
           <View>
             <TextInput placeholderTextColor='grey' placeholder='Email Address' />
-          </View>
-          <Separator />
-        </View>
-      </View>
-
-      <View>
-        <View>
-          <Text style={styles.emailTextStyleStyle}>
-            Phone Number
-          </Text>
-        </View>
-      
-        <View>
-          <View>
-            <TextInput placeholderTextColor='grey' placeholder='Phone Number' />
           </View>
           <Separator />
         </View>
