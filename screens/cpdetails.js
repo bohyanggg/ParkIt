@@ -264,6 +264,8 @@ function CPDetails() {
         onChangeText={handleSearchLocationChange}
         value={searchLocation}
         placeholder="Enter location"
+        autoCapitalize='none'
+        autoCorrect={false}
       />
       <Button
         title="Search"

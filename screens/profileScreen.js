@@ -38,55 +38,20 @@ const ProfileScreen = ({navigation}) => {
 
       <View>
         <Text>
+          Full Name: Kai Yang
+        </Text>
+        <Text>
           Email: {user?.email}
         </Text>
-        <Text>
-          Display Name: {user?.displayName}
-        </Text>
-      </View>
-
-      <View>
-        <Text>
-          {}
-        </Text>
-      </View>
-
-      <View>
-        <View>
-          <Text style={styles.emailTextStyleStyle}>
-                 Full Name
-               </Text>
-        </View>
-      
-        <View>
-          <View>
-            <TextInput placeholderTextColor='grey' placeholder='Full Name' />
-          </View>
-          <Separator />
-        </View>
-      </View>
-
-      <View>
-        <View>
-          <Text style={styles.emailTextStyleStyle}>
-                 Email Address
-               </Text>
-        </View>
-      
-        <View>
-          <View>
-            <TextInput placeholderTextColor='grey' placeholder='Email Address' />
-          </View>
-          <Separator />
-        </View>
       </View>
 
       <View style={styles.buttons}>
         <View style={styles.navigators}>
           <Button
-            title="Save"
+            title="Change Password"
             color="#5D0EEA"
-            onPress={() => { fetchData() }}
+            onPress={() => {}}
+            //not able to implement in time
           />
         </View>
       </View>
@@ -96,15 +61,12 @@ const ProfileScreen = ({navigation}) => {
       
       const styles = StyleSheet.create({
       container: {
-      flex: 1000,
+      flex: 1,
       backgroundColor: '#fff',
       alignItems: 'center',
       justifyContent: 'center'
       },
-      // title: {
-      //   textAlign: 'center',
-      //   marginVertical: 8,
-      // },
+
       separator: {
       marginVertical: 8,
       borderBottomColor: '#737373',
