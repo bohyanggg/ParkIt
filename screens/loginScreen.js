@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-//import { StatusBar } from 'expo-status-bar';
 import { KeyboardAvoidingView, StyleSheet, Text, View, Button, SafeAreaView, Alert, TextInput, Image, Pressable, Keyboard, TouchableWithoutFeedback, TouchableOpacity } from 'react-native';
 import { auth } from '../firebase/firebaseconfig';
 import { signInWithEmailAndPassword } from "firebase/auth";
@@ -9,23 +8,31 @@ const Separator = () => <View style={styles.separator} />;
 const LoginScreen = ({ navigation }) => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-  
+
+  const isVerified = () => {
+    return ( auth.currentUser !== null && auth.currentUser.emailVerified !== false ) ? true : false;
+  }
+
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged(user => {
-      if (user) {
+      if (isVerified()) {
         navigation.replace("MainContainer")
       }
     })
-
     return unsubscribe
   }, [])
 
   const handleLogin = () => {  
-    //const auth = getAuth();
     signInWithEmailAndPassword(auth, email, password)
       .then(userCredentials => {
         const user = userCredentials.user;
         console.log("Logged in with: ", user.email);
+        if (!isVerified()) {
+          Alert.alert('Please verify your email before signing in.');
+        }
+        else if (isVerified()) {
+          navigation.replace("MainContainer")
+        }
       })
       .catch(error => alert(error.message))
   }
@@ -43,6 +50,8 @@ const LoginScreen = ({ navigation }) => {
               <TextInput
                 placeholderTextColor='grey'
                 placeholder='Email'
+                autoCapitalize='none'
+                autoCorrect={false}
                 value = {email}
                 onChangeText = {text => setEmail(text)}
               />
@@ -52,6 +61,8 @@ const LoginScreen = ({ navigation }) => {
               <TextInput
                 placeholderTextColor='grey'
                 placeholder='Password'
+                autoCapitalize='none'
+                autoCorrect={false}
                 secureTextEntry
                 value = {password}
                 onChangeText = {text => setPassword(text)}
@@ -74,14 +85,13 @@ const LoginScreen = ({ navigation }) => {
             <Button
               title="Login"
               color="#5D0EEA"
-              //onPress={() => { navigation.navigate("MainContainer") }}
               onPress={handleLogin}
             />
-                {/* uncomment this part to enable the view of the whole map */}
-{/*            <Button
-            title="Orinigal Map Overview"
-            color="#5D0EEA"
-            onPress={() => { navigation.navigate('Html', { source: require('./1.html') }); }}
+          {/* uncomment this part to enable the view of the whole map */}
+        {/* <Button
+              title="Orinigal Map Overview"
+              color="#5D0EEA"
+              onPress={() => { navigation.navigate('Html', { source: require('./1.html') }); }}
             /> */}
           </View>
         </View>
@@ -109,12 +119,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center'
   },
-  // title: {
-  //   textAlign: 'center',
-  //   marginVertical: 8,
-  // },
+  
   separator: {
-    //marginVertical: 8,
     borderBottomColor: '#737373',
     borderBottomWidth: StyleSheet.hairlineWidth,
   },
@@ -128,41 +134,28 @@ const styles = StyleSheet.create({
     flexDirection:'row',
     paddingTop:20,
   },
+  
   image: {
     margin: 20,
     padding: 16,
   },
-  // textInputLayout: {
-    
-  //   flex: 1,
-  //   paddingTop:'50%',
-  //   margin: 5,
-  //   justifyContent: 'space-between',
-  //   padding: 20,
-  //   backgroundColor: '#cccccc',
-  //   loginButton: {
-  //     border: 3,
-  //     backgroundColor: 'blue',
-  //     padding: 20,
 
-  //   }
-  // },
   textInputStyling: {
     
     borderWidth: 1,
     justifyContent: 'center',
   },
+
   forgotPasswordStyle: {
     color: '#5D0EEA',
     fontSize: 10,
     textAlign: 'right',
   },
+
   forgotPasswordViewStyle: {
     width: '52%',
     paddingTop:10,
-
   }
 });
-
 
 export default LoginScreen;

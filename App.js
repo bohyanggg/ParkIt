@@ -15,15 +15,16 @@ import {
   SettingsScreen,
   ProfileScreen,
   SearchHistoryScreen,
-  MainContainer
 } from "./screens";
+
+import MainContainer from "./screens/MainContainer"
 
 const Stack = createStackNavigator();
 
 function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Map1">
+      <Stack.Navigator initialRouteName="Login">
         <Stack.Screen name="Login" component={LoginScreen} options={{headerShown: false,}}/>
         <Stack.Screen name="MainContainer" component={MainContainer}  />
         <Stack.Screen name="Map" component={Map} options={{headerShown: false,}} />
