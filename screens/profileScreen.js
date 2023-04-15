@@ -38,7 +38,7 @@ const ProfileScreen = ({navigation}) => {
 
       <View>
         <Text>
-          Full Name: Kai Yang
+          Full Name: Boh Yang
         </Text>
         <Text>
           Email: {user?.email}

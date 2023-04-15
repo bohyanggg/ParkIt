@@ -10,15 +10,7 @@ export default function Map({ route, navigation }) {
   return (
     <View style={styles.container}>
       <WebView source={{ uri: url }} style={styles.map} />
-      <Button
-            title="HomePage"
-            color="#5D0EEA"
-            onPress={() => { navigation.replace("Login") }}
-            /> 
     </View>
-    
-    
-    
   );
 }
 
