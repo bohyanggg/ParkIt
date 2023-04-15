@@ -44,7 +44,7 @@ npm install
 4\. Start the expo
 
 ```terminal
-npm start
+npm expo start
 ```
 
 ## Contributors - Team Softies
