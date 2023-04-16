@@ -47,6 +47,11 @@ npm install
 npx expo start
 ```
 
+## App Demo
+
+- [Demo](https://youtu.be/5hKf5ObB2pQ)
+
+
 ## Contributors - Team Softies
 
 - [@bohyanggg](https://github.com/bohyanggg)
