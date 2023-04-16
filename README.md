@@ -7,10 +7,12 @@ SC2006 Software Engineering Lab Project
 
 ```terminal
 .
-├── assets              # images, fonts, icons
+├── .expo               # expo files
+├── assets              # images
 ├── firebase            # backend
+├── GoogleMapAPIUse     # Google Maps API
+├── Lab Deliverables    # Lab 5 deliverables for submission
 ├── screens             # user interface
-├── services            # api requests
 └── README.md
 ```
 
