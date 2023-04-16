@@ -7,7 +7,6 @@ SC2006 Software Engineering Lab Project
 
 ```terminal
 .
-├── .expo               # expo files
 ├── assets              # images
 ├── firebase            # backend
 ├── GoogleMapAPIUse     # Google Maps API
