@@ -53,7 +53,7 @@ const ForgetPasswordScreen = ({navigation}) => {
         
         <View style={styles.buttons}>
               <View style={styles.navigators}>
-              {submitted ? (<Text>Please check your junk email for a reset password link.</Text>) : (
+              {submitted ? (<Text>Please check your email for a password reset link.</Text>) : (
                 <>
                   <Button
                     title="Reset Password"
