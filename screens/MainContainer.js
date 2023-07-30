@@ -9,8 +9,8 @@ import {
   CarParkScreen,
   CPDetails,
   FavCarparkScreen,
-  SettingsScreen,
   SearchHistoryScreen,
+  ProfileScreen,
 } from "../screens";
 
 const Tab = createBottomTabNavigator();
@@ -45,7 +45,7 @@ export default function MainContainer() {
       <Tab.Screen name="Map" component={CPDetails} />
       <Tab.Screen name="Favourite Carpark" component={FavCarparkScreen} />
       <Tab.Screen name="Search History" component={SearchHistoryScreen} />
-      <Tab.Screen name="Settings" component={SettingsScreen} />
+      <Tab.Screen name="Settings" component={ProfileScreen} />
     </Tab.Navigator>
 
   );

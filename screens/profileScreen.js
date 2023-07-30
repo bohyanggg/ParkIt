@@ -6,10 +6,18 @@ import { auth, db } from '../firebase/firebaseconfig';
 import { updateProfile } from 'firebase/auth';
 import { QuerySnapshot, collection, addDoc, doc, getDoc, setDoc } from "firebase/firestore"; 
 
-
 const Separator = () => <View style={styles.separator} />;
 
 const ProfileScreen = ({navigation}) => {
+
+  const handleSignOut = () => {
+    auth
+      .signOut()
+      .then(() => {
+        navigation.replace("Login")
+      })
+      .catch(error => alert(error.message))
+  }
 
   const user = auth.currentUser;
   //doesnt work yet
@@ -55,7 +63,17 @@ const ProfileScreen = ({navigation}) => {
           />
         </View>
       </View>
-      
+
+      <View style={styles.buttons}>
+        <View style={styles.navigators}>
+          <Button 
+            title="Log Out"
+            color="#5D0EEA"
+            onPress={handleSignOut}
+          />
+        </View>
+      </View>
+
     </SafeAreaView>
       );}
       

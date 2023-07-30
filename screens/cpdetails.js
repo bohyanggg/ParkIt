@@ -12,10 +12,6 @@ function deg2rad(deg) {
 function getDistanceInKm(point1, point2) {
   const [lon1, lat1] = point1;
   const [lon2, lat2] = point2;
-  console.log('lon1:', lon1);
-  console.log('lat1:', lat1);
-  console.log('lon2:', lon2);
-  console.log('lat2:', lat2);
   const R = 6371; // Radius of the earth in km
   const dLat = deg2rad(lat2 - lat1);
   const dLon = deg2rad(lon2 - lon1);
@@ -27,10 +23,6 @@ function getDistanceInKm(point1, point2) {
   const d = R * c; // Distance in km
   return d;
 }
-
-
-
-
 
 proj4.defs('EPSG:3414', '+proj=tmerc +lat_0=1.366666666666667 +lon_0=103.8333333333333 +k=1 +x_0=28001.642 +y_0=38744.572 +ellps=WGS84 +datum=WGS84 +units=m +no_defs');
 
@@ -241,13 +233,7 @@ function CPDetails() {
     );
   };
   
-  
-  
-  
-      
   const keyExtractor = (item, index) => `${item.ppCode}-${index}`;
-
-      
         if (loading) {
           return (
             <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
