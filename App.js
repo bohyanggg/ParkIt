@@ -7,11 +7,10 @@ import { NavigationContainer, DefaultTheme } from "@react-navigation/native";
 import {
   LoginScreen,
   Map,
-  CarParkScreen,
   CPDetails,
   ForgetPasswordScreen,
   SignUpScreen,
-  ProfileScreen,
+  SettingScreen,
 } from "./screens";
 
 import MainContainer from "./screens/MainContainer"
@@ -25,11 +24,10 @@ function App() {
         <Stack.Screen name="Login" component={LoginScreen} options={{headerShown: false,}}/>
         <Stack.Screen name="MainContainer" component={MainContainer} options={{headerShown: false,}} />
         <Stack.Screen name="Map" component={Map} />
-        <Stack.Screen name="Carpark" component={CarParkScreen} options={{headerShown: false,}} />
         <Stack.Screen name="CarparkDetails" component={CPDetails} options={{headerShown: false,}} />
         <Stack.Screen name="ForgetPassword" component={ForgetPasswordScreen}   />
         <Stack.Screen name="SignUp" component={SignUpScreen} />
-        <Stack.Screen name="Profile" component={ProfileScreen}  />
+        <Stack.Screen name="Setting" component={SettingScreen}  />
       </Stack.Navigator>
     </NavigationContainer>
   )

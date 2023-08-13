@@ -6,11 +6,10 @@ import Ionicons from 'react-native-vector-icons/Ionicons'
 //screens from index.js
 import {
   Map,
-  CarParkScreen,
   CPDetails,
   FavCarparkScreen,
   SearchHistoryScreen,
-  ProfileScreen,
+  SettingScreen,
 } from "../screens";
 
 const Tab = createBottomTabNavigator();
@@ -33,7 +32,7 @@ export default function MainContainer() {
           else if (rn == "Search History") {
             iconName = focused ? 'search-circle' : 'search-circle-outline';
           }
-          else if (rn == "Settings") {
+          else if (rn == "Setting") {
             iconName = focused ? 'settings' : 'settings-outline';
           }
 
@@ -45,7 +44,7 @@ export default function MainContainer() {
       <Tab.Screen name="Map" component={CPDetails} />
       <Tab.Screen name="Favourite Carpark" component={FavCarparkScreen} />
       <Tab.Screen name="Search History" component={SearchHistoryScreen} />
-      <Tab.Screen name="Settings" component={ProfileScreen} />
+      <Tab.Screen name="Setting" component={SettingScreen} />
     </Tab.Navigator>
 
   );

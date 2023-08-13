@@ -8,7 +8,7 @@ import { QuerySnapshot, collection, addDoc, doc, getDoc, setDoc } from "firebase
 
 const Separator = () => <View style={styles.separator} />;
 
-const ProfileScreen = ({navigation}) => {
+const SettingScreen = ({navigation}) => {
 
   const handleSignOut = () => {
     auth
@@ -126,4 +126,4 @@ const ProfileScreen = ({navigation}) => {
       }
       });
 
-export default ProfileScreen;
+export default SettingScreen;

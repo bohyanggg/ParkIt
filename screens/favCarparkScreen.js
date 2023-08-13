@@ -10,7 +10,7 @@ const FavCarparkScreen = ({ navigation }) => {
     return (
       <TouchableOpacity
         style={styles.carparkItem}
-        onPress={() => navigation.navigate('CarparkDetails', { carpark: item })}
+        onPress={() => navigation.navigate('CPDetails', { carpark: item })}
       >
         <View style={styles.carparkDetails}>
           <Text style={styles.carparkName}>{item.name}</Text>
