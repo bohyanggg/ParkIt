@@ -3,9 +3,13 @@ SC2006 Software Engineering Lab Project
 
 ## 🛠️ Tech Stack & APIs Used
 We built ParkIt with a powerful set of technologies:
+
 Frontend: React Native
+
 Backend: Firebase
+
 Database: Firestore
+
 APIs: 
 - OpenStreetMap Nominatim API to get the coordinates of the entered location.
 - URA Car Park Details API to get the list of URA car parks as well as their details.
