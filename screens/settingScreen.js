@@ -1,10 +1,8 @@
-//can leave out the user image
-//fetch user info from database
 import { StyleSheet, View, Text, Button, TextInput, SafeAreaView,Image} from 'react-native'
 import React, { useState, useEffect } from 'react'
 import { auth, db } from '../firebase/firebaseconfig';
 import { updateProfile } from 'firebase/auth';
-import { QuerySnapshot, collection, addDoc, doc, getDoc, setDoc } from "firebase/firestore"; 
+import { QuerySnapshot, collection, query, onSnapshot, addDoc, doc, getDoc, setDoc } from "firebase/firestore"; 
 
 const Separator = () => <View style={styles.separator} />;
 
@@ -58,7 +56,8 @@ const SettingScreen = ({navigation}) => {
           <Button
             title="Change Password"
             color="#5D0EEA"
-            onPress={() => {}}
+            onPress={() => {fetchData}}
+            
             //not able to implement in time
           />
         </View>

@@ -36,6 +36,7 @@ export default function Map() {
       }
 
       let location = await Location.getCurrentPositionAsync({});
+      console.log('Current location:', location);
       setCurrentLocation(location);
     })();
   }, []);

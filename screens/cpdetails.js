@@ -10,9 +10,11 @@ import {
   Pressable,
 } from "react-native";
 import axios from "axios";
+import * as Location from 'expo-location';
 import MapView, { Marker } from "react-native-maps";
 import proj4 from "proj4";
 import fetch from "isomorphic-fetch";
+import { useRef } from "react";
 import { addToHistory, history } from "./history";
 
 function deg2rad(deg) {
@@ -42,24 +44,42 @@ proj4.defs(
 );
 
 function CPDetails() {
+  const [currentLocation, setCurrentLocation] = useState(null);
   const [data, setData] = useState([]);
   const [dataFetched, setDataFetched] = useState(false); // new state flag
   const [filteredData, setFilteredData] = useState([]);
   const [token, setToken] = useState("");
   const [loading, setLoading] = useState(true);
   const [searchLocation, setSearchLocation] = useState("");
-  const [region] = useState({
-    latitude: 1.3521,
-    longitude: 103.8198,
-    latitudeDelta: 0.3,
-    longitudeDelta: 0.3,
-  });
+  // const [region] = useState({
+  //   latitude: 1.3521,
+  //   longitude: 103.8198,
+  //   latitudeDelta: 0.3,
+  //   longitudeDelta: 0.3,
+  // });
+  const [region, setRegion] = useState(null);
   const [error, setError] = useState(null);
   const handleButtonPress = () => {
     handleSearchLocationSubmit;
     //   console.log(searchLocation);
     //  addToHistory(searchLocation);
   };
+
+  const mapRef = useRef(null);
+
+  useEffect(() => {
+    (async () => {
+      let { status } = await Location.requestForegroundPermissionsAsync();
+      if (status !== 'granted') {
+        alert('Permission to access location was denied');
+        return;
+      }
+
+      let location = await Location.getCurrentPositionAsync({});
+      console.log('Current location:', location);
+      setCurrentLocation(location);
+    })();
+  }, []);
 
   useEffect(() => {
     const accessKey = "acb2ead0-8cef-46a5-af01-15d850b437ce";
@@ -131,7 +151,7 @@ function CPDetails() {
       setLoading(true);
       console.log(searchLocation);
       addToHistory(searchLocation);
-
+      
       // Use the OpenStreetMap Nominatim API to get the coordinates of the entered location
       const geocodeUrl = `https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(
         searchLocation
@@ -147,7 +167,14 @@ function CPDetails() {
       console.log("Location:", location);
       console.log("Latitude:", location.lat);
       console.log("Longitude:", location.lon);
-
+      setRegion({
+        latitude: location.lat,
+        longitude: location.lon,
+        latitudeDelta: 0.0155,
+        longitudeDelta: 0.0155,
+      });
+      console.log('region : ', region);
+  
       // Convert the location coordinates to SVY21 format
       const lon = parseFloat(location.lon);
       const lat = parseFloat(location.lat);
@@ -158,7 +185,8 @@ function CPDetails() {
 
       // Filter the car parks by distance from the entered location
       // Filter the car parks by distance from the entered location
-      console.log("data:", data);
+
+      // console.log("data:", data);
       const filtered = data.filter((carpark) => {
         if (!carpark.geometries || carpark.geometries.length === 0) {
           console.log(
@@ -171,11 +199,10 @@ function CPDetails() {
           .split(",")
           .map(parseFloat);
 
-        console.log("carparkCoords:", carparkCoords);
-        console.log("X coordinate:", carparkCoords[0]);
-        console.log("Y coordinate:", carparkCoords[1]);
+        // console.log("carparkCoords:", carparkCoords);
+        // console.log("X coordinate:", carparkCoords[0]);
+        // console.log("Y coordinate:", carparkCoords[1]);
 
-        console.log("carparkCoords:", carparkCoords);
         for (let i = 0; i < carparkCoords.length; i++) {
           const coord = carparkCoords[i];
           if (isNaN(coord)) {
@@ -187,16 +214,17 @@ function CPDetails() {
           "EPSG:4326",
           carparkCoords
         );
-        console.log("carparkCoordsProj4:", carparkCoordsProj4);
+        // console.log("carparkCoordsProj4:", carparkCoordsProj4);
         const distance = getDistanceInKm(
           [location.lon, location.lat],
           carparkCoordsProj4
         );
-        console.log("distance:", distance);
+        // console.log("distance:", distance);
         return distance <= 2;
       });
 
-      console.log("filtered:", filtered);
+      // console.log("filtered:", filtered);
+      // this is the main bulk
 
       const uniqueFiltered = filtered.reduce((acc, current) => {
         const isDuplicate = acc.find(
@@ -211,7 +239,7 @@ function CPDetails() {
 
       // Set the filtered car parks and map region
       setFilteredData(uniqueFiltered);
-      console.log("filteredData:", filteredData);
+      // console.log("filteredData:", filteredData);
       setError(null);
     } catch (error) {
       console.log(error);
@@ -235,7 +263,7 @@ function CPDetails() {
       );
     }
 
-    console.log("filteredData:", filteredData);
+    // console.log("filteredData:", filteredData);
     return (
       <View style={{ padding: 10 }}>
         <Pressable
@@ -279,6 +307,10 @@ function CPDetails() {
     );
   }
 
+  const goToNewRegion = () => {
+    mapRef.current.animateToRegion(region, 1000);
+  };
+
   return (
     <View style={{ flex: 1 }}>
       <View
@@ -304,7 +336,18 @@ function CPDetails() {
       </View>
       {error && <Text style={{ color: "red" }}>{error}</Text>}
       <View style={{ flex: 1, flexDirection: "column" }}>
-        <MapView style={{ flex: 1 }} region={region}>
+        <MapView 
+          ref={mapRef}
+          showsUserLocation={true}
+          style={{ flex: 1 }} 
+          initialRegion={{
+            latitude: currentLocation.coords.latitude,
+            longitude: currentLocation.coords.longitude,
+            latitudeDelta: 0.0122,
+            longitudeDelta: 0.0122,
+          }}
+        >
+          <Button onPress={() => goToNewRegion()} title="Go to Location" />
           {filteredData.map((carpark) => {
             if (
               !carpark.geometries ||
