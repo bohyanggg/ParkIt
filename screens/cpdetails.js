@@ -44,7 +44,12 @@ proj4.defs(
 );
 
 function CPDetails() {
-  const [currentLocation, setCurrentLocation] = useState(null);
+  const [currentLocation, setCurrentLocation] = useState({
+    latitude: 1.3521,
+    longitude: 103.8198,
+    latitudeDelta: 0.3,
+    longitudeDelta: 0.3,
+  });
   const [data, setData] = useState([]);
   const [dataFetched, setDataFetched] = useState(false); // new state flag
   const [filteredData, setFilteredData] = useState([]);
@@ -57,7 +62,12 @@ function CPDetails() {
   //   latitudeDelta: 0.3,
   //   longitudeDelta: 0.3,
   // });
-  const [region, setRegion] = useState(null);
+  const [region, setRegion] = useState({
+    latitude: 1.3521,
+    longitude: 103.8198,
+    latitudeDelta: 0.3,
+    longitudeDelta: 0.3,
+  });
   const [error, setError] = useState(null);
   const handleButtonPress = () => {
     handleSearchLocationSubmit;
@@ -170,8 +180,8 @@ function CPDetails() {
       setRegion({
         latitude: location.lat,
         longitude: location.lon,
-        latitudeDelta: 0.0155,
-        longitudeDelta: 0.0155,
+        latitudeDelta: 0.03,
+        longitudeDelta: 0.03,
       });
       console.log('region : ', region);
   

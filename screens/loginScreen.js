@@ -42,11 +42,11 @@ const LoginScreen = ({ navigation }) => {
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredentials) => {
         const user = userCredentials.user;
-        console.log("Logged in with: ", user.email);
         if (!isVerified()) {
           Alert.alert("Please verify your email before signing in.");
         } else if (isVerified()) {
           navigation.replace("MainContainer");
+          console.log("Logged in with: ", user.email);
         }
       })
       .catch((error) => alert(error.message));

@@ -1,3 +1,5 @@
+![parking](./assets/images/ParkItlogo.png)
+
 # ParkIt
 SC2006 Software Engineering Lab Project
 
@@ -20,7 +22,6 @@ APIs:
 .
 ├── assets              # images
 ├── firebase            # backend
-├── GoogleMapAPIUse     # Google Maps API
 ├── Lab Deliverables    # Lab 5 deliverables for submission
 ├── screens             # user interface
 └── README.md

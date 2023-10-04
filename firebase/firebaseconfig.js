@@ -11,12 +11,12 @@ import { getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_API_KEY,
-  authDomain: "parkit-3d4ad.firebaseapp.com",
-  projectId: "parkit-3d4ad",
-  storageBucket: "parkit-3d4ad.appspot.com",
-  messagingSenderId: "503067931532",
-  appId: "1:503067931532:web:429453e63e4aacde54dca9",
-  measurementId: "G-D303494X84"
+  authDomain: process.env.REACT_APP_AUTH_DOMAIN,
+  projectId: process.env.REACT_APP_PROJECT_ID,
+  storageBucket: process.env.REACT_APP_STORAGE_BUCKET,
+  messagingSenderId: process.env.REACT_APP_MESSAGING_SENDER_ID,
+  appId: process.env.REACT_APP_APP_ID,
+  measurementId: process.env.REACT_APP_MEASUREMENT_ID
 };
 
 // Initialize Firebase
