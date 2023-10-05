@@ -1,4 +1,6 @@
-# ParkIt ![parking](./assets/images/ParkItlogo.png)
+# ParkIt 
+![parking](./assets/images/ParkItlogo.png)
+
 SC2006 Software Engineering Lab Project
 
 ## 🛠️ Tech Stack & APIs Used
@@ -13,6 +15,38 @@ Database: Firestore
 APIs: 
 - OpenStreetMap Nominatim API to get the coordinates of the entered location.
 - URA Car Park Details API to get the list of URA car parks as well as their details.
+
+## Screenshots of app on IOS Simulator
+
+### Login and Sign up screens
+
+<p align="left">
+  ![login](./assets/screenshots/login.png)
+</p>
+<p align="middle">
+  ![login](./assets/screenshots/sign_up.png)
+</p>
+<p align="right">
+  ![](./assets/screenshots/forget_pwd.png)
+</p>
+
+### Searching for carparks at destination
+
+<p align="left">
+  ![login](./assets/screenshots/own_location.png)
+</p>
+<p align="right">
+  ![](./assets/screenshots/search_screen.png)
+</p>
+
+### Login and Sign up screens
+
+<p align="left">
+  ![login](./assets/screenshots/search_history.png)
+</p>
+<p align="right">
+  ![](./assets/screenshots/setting_screen.png)
+</p>
 
 ## Project Folder Structure
 
