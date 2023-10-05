@@ -1,12 +1,10 @@
 # ParkIt 
-![parking](./assets/images/ParkItlogo.png)
+![parking](./assets/images/ParkItlogo.png)     SC2006 Software Engineering Lab Project
 
-SC2006 Software Engineering Lab Project
-
-## 🛠️ Tech Stack & APIs Used
+# 🛠️ Tech Stack & APIs Used
 We built ParkIt with a powerful set of technologies:
 
-Frontend: React Native
+Frontend: React Native (cross platform)
 
 Backend: Firebase
 
@@ -16,39 +14,31 @@ APIs:
 - OpenStreetMap Nominatim API to get the coordinates of the entered location.
 - URA Car Park Details API to get the list of URA car parks as well as their details.
 
-## Screenshots of app on IOS Simulator
+# 🌟Screenshots of app on IOS Simulator
 
-### Login and Sign up screens
+### Login, Sign up and Forget Password screens
 
-<p align="left">
-  ![login](./assets/screenshots/login.png)
-</p>
 <p align="middle">
-  ![login](./assets/screenshots/sign_up.png)
-</p>
-<p align="right">
-  ![](./assets/screenshots/forget_pwd.png)
+  <img src='./assets/screenshots/login.png' width='250px'>
+  <img src='./assets/screenshots/sign_up.png' width='250px'>
+  <img src='./assets/screenshots/forget_pwd.png' width='250px'>
 </p>
 
 ### Searching for carparks at destination
 
-<p align="left">
-  ![login](./assets/screenshots/own_location.png)
-</p>
-<p align="right">
-  ![](./assets/screenshots/search_screen.png)
+<p align="middle">
+  <img src='./assets/screenshots/own_location.png' width='250px'>
+  <img src='./assets/screenshots/search_screen.png' width='250px'>
 </p>
 
-### Login and Sign up screens
+### Search History and Settings
 
-<p align="left">
-  ![login](./assets/screenshots/search_history.png)
-</p>
-<p align="right">
-  ![](./assets/screenshots/setting_screen.png)
+<p align="middle">
+  <img src='./assets/screenshots/search_history.png' width='250px'>
+  <img src='./assets/screenshots/setting_screen.png' width='250px'>
 </p>
 
-## Project Folder Structure
+# Project Folder Structure
 
 ```terminal
 .
@@ -59,7 +49,7 @@ APIs:
 └── README.md
 ```
 
-## Develop
+# Develop
 
 > To further develop this project, clone this repo and make sure you have the following prerequisites.
 
@@ -92,7 +82,7 @@ npm install
 npx expo start
 ```
 
-## App Demo
+# App Demo
 
 - [Demo](https://youtu.be/5hKf5ObB2pQ)
 
