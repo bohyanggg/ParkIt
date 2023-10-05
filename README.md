@@ -1,6 +1,4 @@
-![parking](./assets/images/ParkItlogo.png)
-
-# ParkIt
+# ParkIt ![parking](./assets/images/ParkItlogo.png)
 SC2006 Software Engineering Lab Project
 
 ## 🛠️ Tech Stack & APIs Used

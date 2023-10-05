@@ -1,16 +1,35 @@
 import React, { useEffect, useState } from 'react';
 import { KeyboardAvoidingView, StyleSheet, View, Text, Button, Image, TextInput, Alert, Pressable, TouchableWithoutFeedback, TouchableOpacity, Keyboard, SafeAreaView, } from 'react-native';
 import { auth, db } from '../firebase/firebaseconfig';
+import { doc, setDoc } from 'firebase/firestore';
 import { createUserWithEmailAndPassword, sendEmailVerification } from "firebase/auth";
 
 const Separator = () => <View style={styles.separator} />;
 
 const SignUpScreen = ({ navigation }) => {
 
+  const [fullname, setfullname] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [confirmpassword, setconfirmpassword] = useState('');
-  const [fullname, setfullname] = useState('')
+
+  const createUserDocument = async (user, additionalData) => {
+    if (!user) return;
+
+    if (user) {
+      try {
+        console.log('reached here');
+        await setDoc(doc(db, "users", user.uid), {
+          fullName: additionalData,
+          email: user.email,
+          createdAt: new Date(),
+        });
+      } catch (error) {
+        console.log("Error in creating user", error);
+      }
+    }
+  
+  };
 
   const handleSignUp = async () => {
     try {
@@ -21,12 +40,15 @@ const SignUpScreen = ({ navigation }) => {
             console.log("Registered with: ", user.email);
             sendEmailVerification(auth.currentUser);
             alert('Verification mail has been sent to your email')
+            createUserDocument(user, fullname);
             navigation.replace("Login")
           })
           .catch(error => {alert(error.message)})
+
       } else {
         alert("Passwords dont match");
       }
+
     } catch (error) {
       const errorCode = error.code;
       let errorMessage;
